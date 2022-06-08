@@ -12,7 +12,7 @@ class CustomNavigation extends StatefulWidget {
 class _CustomNavigationState extends State<CustomNavigation> {
   int currentIndex=0;
   final screen=[];
-  bool isSelected=true;
+ 
  
 
   @override
@@ -43,12 +43,12 @@ class _CustomNavigationState extends State<CustomNavigation> {
             icon:Icon(Icons.home_outlined),label:"home" ),
           BottomNavigationBarItem(
             activeIcon: Icon(Icons.bookmark),
-            icon:Icon(Icons.bookmark_border),label:"home" ),
+            icon:Icon(Icons.bookmark_border),label:"favorite" ),
                     BottomNavigationBarItem(activeIcon: Icon(Icons.notifications),
-                      icon:Icon(Icons.notifications_outlined),label:"home" ),
+                      icon:Icon(Icons.notifications_outlined),label:"notification" ),
           BottomNavigationBarItem(activeIcon: Icon(Icons.person),
             
-            icon:Icon(Icons.person_outline),label:"home" ),
+            icon:Icon(Icons.person_outline),label:"profile" ),
            
 
 
