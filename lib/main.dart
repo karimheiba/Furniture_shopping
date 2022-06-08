@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_shopping_app/screen/login.dart';
 
 import 'screen/boarding.dart';
 
@@ -16,11 +17,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute:"/" ,
-      routes: {},
+      routes: {
+"/":(context) => Boarding(),
+"login":(context) => Login(),
+
+      },
       title: 'furniture shopping',
       theme: ThemeData(
       ),
-      home: Boarding(),
+   
       );
       }
       }
