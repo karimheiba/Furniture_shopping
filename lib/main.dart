@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_shopping_app/screen/login.dart';
+import 'package:furniture_shopping_app/screen/signup.dart';
 
 import 'screen/boarding.dart';
 
@@ -16,11 +18,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute:"/" ,
-      routes: {},
+      routes: {
+"/":(context) => Boarding(),
+"login":(context) => Login(),
+"signup":(context) => SignUp(),
+
+      },
       title: 'furniture shopping',
       theme: ThemeData(
       ),
-      home: Boarding(),
+   
       );
       }
       }
