@@ -13,20 +13,22 @@ class Login extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 25.0, horizontal: 30),
-              child: logoScection(),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-              child: welcomeSection(),
-            ),
-            fieldSection(context)
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 25.0, horizontal: 30),
+                child: logoScection(),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+                child: welcomeSection(),
+              ),
+              fieldSection(context)
+            ],
+          ),
         ),
       ),
     );
@@ -54,7 +56,7 @@ class Login extends StatelessWidget {
             height: 25,
           ),
           CustomTextFormField(
-              label: "Password", suffixIcon: Icons.remove_red_eye_outlined),
+              label: "Password",obscureText: true, ),
           SizedBox(
             height: 35,
           ),
@@ -68,7 +70,7 @@ class Login extends StatelessWidget {
           ),
           SignButton(
             text: "Log in",
-            onTap: () {
+            onPressed: () {
               
             },
           ),
