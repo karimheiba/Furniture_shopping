@@ -4,25 +4,26 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:furniture_shopping_app/constans/colors.dart';
 
 class SignButton extends StatelessWidget {
-  const SignButton({Key? key,required this.text,required this.onTap}) : super(key: key);
+  const SignButton({Key? key,required this.text,required this.onPressed}) : super(key: key);
 final String text;
-final VoidCallback onTap;
+final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap:onTap,
-      child: Container(
-        alignment: Alignment.center,
-        height:50 ,
-        width: 285,
-        decoration: BoxDecoration(
-          color: primary,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-          
-        ),
-        child: Text(text,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,color: secondaryButtonBG),),
-      ),
+    return MaterialButton(
+       onPressed: onPressed,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+     
+      textColor:secondaryButtonBG ,
+      minWidth: 285,
+      height: 50,
+      color: primary,
+     
+    child:Text(text,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,),
+    ),
     );
+    
+    
+   
     
 }
 }

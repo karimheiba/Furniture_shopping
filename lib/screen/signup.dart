@@ -12,21 +12,23 @@ class SignUp extends StatelessWidget {
   
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment:CrossAxisAlignment.start,
-          children: [
-            Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 30),
-        child: logoScection(),
-            ),
-            Padding(
-        padding: const EdgeInsets.only(bottom: 25,left: 30),
-        child: welcomeSection(),
-            ),
-            
-            fieldSection()
-            
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment:CrossAxisAlignment.start,
+            children: [
+              Padding(
+          padding: const EdgeInsets.symmetric(vertical: 25.0,horizontal: 30),
+          child: logoScection(),
+              ),
+              Padding(
+          padding: const EdgeInsets.only(bottom: 25,left: 30),
+          child: welcomeSection(),
+              ),
+              
+              fieldSection()
+              
+            ],
+          ),
         ),
       ),
     );
@@ -63,16 +65,16 @@ class SignUp extends StatelessWidget {
           CustomTextFormField(label: "Email",),
 
      
- CustomTextFormField(label: "Password",suffixIcon: Icons.remove_red_eye_outlined),
+ CustomTextFormField(label: "Password",obscureText: true,),
 
-CustomTextFormField(label: "Confirm Password",suffixIcon: Icons.remove_red_eye_outlined),
+CustomTextFormField(label: "Confirm Password",obscureText: true,),
 
 
 
 
   SizedBox(height: 40,),
 
-  SignButton(text: "Sign Up",onTap: (){
+  SignButton(text: "Sign Up",onPressed: (){
   
   },
   ),
