@@ -56,7 +56,7 @@ class Login extends StatelessWidget {
             height: 25,
           ),
           CustomTextFormField(
-              label: "Password",obscureText: true, ),
+              label: "Password",obscureText: true,showSuffix: true, ),
           SizedBox(
             height: 35,
           ),
