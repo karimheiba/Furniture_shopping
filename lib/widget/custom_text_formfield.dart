@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../constans/colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  CustomTextFormField({Key? key, required this.label,this.obscureText=false,this.isVisible=true})
+  CustomTextFormField({Key? key, required this.label,this.obscureText=false,this.showSuffix=false})
       : super(key: key);
   final String label;
   bool obscureText;
-  bool isVisible;
+  bool showSuffix;
+ 
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -16,7 +17,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: widget.isVisible,
+      obscureText: widget.obscureText,
       decoration: InputDecoration(
         
           focusedBorder:
@@ -28,12 +29,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               fontSize: 19, fontWeight: FontWeight.w400, color: textSecondary),
           contentPadding: EdgeInsets.symmetric(vertical: 20),
           label: Text(widget.label),
-          suffixIcon: widget.obscureText ? IconButton(onPressed: (){
+          suffixIcon: widget.showSuffix? IconButton(onPressed: (){
             setState(() {
-              widget.isVisible=!widget.isVisible;
+              widget.obscureText= !widget.obscureText;
             });
 
-          }, icon:  Icon( widget.isVisible? Icons.remove_red_eye_outlined:Icons.visibility_off,color: primary,size: 18,)):null
+          }, icon:  Icon( widget.obscureText? Icons.remove_red_eye_outlined: Icons.visibility_off,size: 18,color: primary)):null
           
   
       ),

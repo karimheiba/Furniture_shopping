@@ -65,9 +65,9 @@ class SignUp extends StatelessWidget {
           CustomTextFormField(label: "Email",),
 
      
- CustomTextFormField(label: "Password",obscureText: true,),
+ CustomTextFormField(label: "Password",obscureText: true,showSuffix: true,),
 
-CustomTextFormField(label: "Confirm Password",obscureText: true,),
+CustomTextFormField(label: "Confirm Password",obscureText: true,showSuffix: true,),
 
 
 
