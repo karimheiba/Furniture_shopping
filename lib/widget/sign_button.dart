@@ -10,6 +10,7 @@ final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
+      visualDensity: VisualDensity.comfortable,
        onPressed: onPressed,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
      

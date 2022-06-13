@@ -12,6 +12,7 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+    
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -71,6 +72,7 @@ class Login extends StatelessWidget {
           SignButton(
             text: "Log in",
             onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
               
             },
           ),
