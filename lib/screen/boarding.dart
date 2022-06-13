@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/constans/colors.dart';
-import 'package:furniture_shopping_app/widget/custom_bottom_navigation.dart';
+
 
 
 class Boarding extends StatelessWidget {
@@ -12,13 +12,15 @@ class Boarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
   
     return Scaffold(
       body:Container(
       
         
 padding: EdgeInsets.symmetric(horizontal: 25,),
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage("assets/images/maskGroup.png"),fit: BoxFit.cover,),
         ),
