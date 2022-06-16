@@ -84,10 +84,10 @@ CustomTextFormField(label: "Confirm Password",obscureText: true,showSuffix: true
   Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
-      Text("Already have account?",style: TextStyle(fontSize:14,fontWeight: FontWeight.w600,color: textSecondary ),),
+      Text("Already have account?",style: TextStyle(fontSize:14,fontWeight: FontWeight.w600,color: textSecondary ,fontFamily: "NunitoSans"),),
       TextButton(
         onPressed: (){},
-         child: Text("SIGN IN",style: TextStyle(fontSize:14,fontWeight: FontWeight.w700,color: primary ),
+         child: Text("SIGN IN",style: TextStyle(fontSize:14,fontWeight: FontWeight.w700,color: primary,fontFamily: "NunitoSans" ),
          )
          ),
     ],

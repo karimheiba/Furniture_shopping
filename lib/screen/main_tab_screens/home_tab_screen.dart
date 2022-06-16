@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 import 'package:furniture_shopping_app/widget/category_list.dart';
+import 'package:furniture_shopping_app/widget/prudact_list.dart';
 
 import '../../constans/colors.dart';
 
@@ -39,6 +42,11 @@ class HomeScreenTab extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: CategoryList(),
             ),
+
+
+            // test prudact card
+PrudactList()
+            
           ],
         ),
     );

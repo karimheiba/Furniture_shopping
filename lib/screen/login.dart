@@ -64,7 +64,7 @@ class Login extends StatelessWidget {
           Text(
             "Forgot password",
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w600, color: primary),
+                fontSize: 18, fontWeight: FontWeight.w600, color: primary,fontFamily: "NunitoSans"),
           ),
           SizedBox(
             height: 40,
@@ -86,7 +86,7 @@ class Login extends StatelessWidget {
               child: Text(
                 "Sign Up",
                 style: TextStyle(
-                    fontSize: 18, fontWeight: FontWeight.w600, color: primary),
+                    fontSize: 18, fontWeight: FontWeight.w600, color: primary,fontFamily: "NunitoSans"),
               )),
           SizedBox(
             height: 37,

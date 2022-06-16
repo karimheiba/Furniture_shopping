@@ -8,12 +8,10 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Column(
-        children: [
-    
-          Text("Notification"),
-        ],
-      ),),
+      body: Center(child: 
+          Center(child: Text("Notification")),
+      
+      ),
     );
     
   }

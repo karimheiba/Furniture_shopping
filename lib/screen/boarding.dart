@@ -31,6 +31,7 @@ class Boarding extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
                 Text(
                   "MAKE YOUR",
                   style: TextStyle(
@@ -53,42 +54,22 @@ class Boarding extends StatelessWidget {
             SizedBox(
               height: 35,
             ),
+
+             
             Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "The best simple place where you",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                      color: textSecondary,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "discover most wonderful furnitures",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                      color: textSecondary,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "and make your home beautiful",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400,
-                      color: textSecondary,
-                    ),
-                  ),
-                ],
-              ),
+
+                
+                Text("The best simple place where you", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
+                SizedBox(height: 12,),
+              
+              Text("discover most wonderful furnitures", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
+              SizedBox(height: 12,),
+              Text("and make your home beautiful", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
+              ],),
+
             ),
             Padding(
               padding: const EdgeInsets.only(top: 150, bottom: 10),

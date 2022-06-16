@@ -19,7 +19,7 @@ final VoidCallback onPressed;
       height: 50,
       color: primary,
      
-    child:Text(text,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,),
+    child:Text(text,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w600,fontFamily: "NunitoSans"),
     ),
     );
     
