@@ -24,9 +24,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               UnderlineInputBorder(borderSide: BorderSide(color: primary)),
           floatingLabelBehavior: FloatingLabelBehavior.always,
           floatingLabelStyle: TextStyle(
-              fontSize: 19, fontWeight: FontWeight.w400, color: textSecondary),
+              fontSize: 19, fontWeight: FontWeight.w400, color: textSecondary,fontFamily: "NunitoSans"),
           labelStyle: TextStyle(
-              fontSize: 19, fontWeight: FontWeight.w400, color: textSecondary),
+              fontSize: 19, fontWeight: FontWeight.w400, color: textSecondary,fontFamily: "NunitoSans"),
           contentPadding: EdgeInsets.symmetric(vertical: 20),
           label: Text(widget.label),
           suffixIcon: widget.showSuffix? IconButton(onPressed: (){
