@@ -40,7 +40,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             ),
           ],
           leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Data.gitProd();
+            },
             icon: Icon(
               Icons.search,
               color: Colors.black,
