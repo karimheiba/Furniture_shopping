@@ -35,7 +35,7 @@ padding: EdgeInsets.symmetric(horizontal: 25,),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              Text("MAKE YOUR",style: TextStyle(fontSize: 24,fontWeight: FontWeight.w600,color: textSecondary),),
+              Text("MAKE YOUR",style: TextStyle(fontSize: 24,fontWeight: FontWeight.w600,color: textSecondary,),),
             SizedBox(height: 15,),
             Text("HOME BEAUTIFUL",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w700,color: primary),),
             ],),
@@ -47,12 +47,12 @@ padding: EdgeInsets.symmetric(horizontal: 25,),
                   
                 children: [
                 
-                Text("The best simple place where you", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,),),
+                Text("The best simple place where you", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
                 SizedBox(height: 12,),
               
-              Text("discover most wonderful furnitures", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,),),
+              Text("discover most wonderful furnitures", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
               SizedBox(height: 12,),
-              Text("and make your home beautiful", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,),),
+              Text("and make your home beautiful", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
               ],),
             ),
            
