@@ -1,6 +1,8 @@
 {
+
     "name": "furniture_shopping_app",
     "short_name": "furniture_shopping_app",
+
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
