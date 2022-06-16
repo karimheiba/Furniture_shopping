@@ -12,44 +12,68 @@ class HomeScreenTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    double all = height + width;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-      
-          elevation: 0,
-          backgroundColor: Colors.white,
-          leading: IconButton(onPressed: (){}, icon: Icon(Icons.search,size: 30,color:textSecondary ,)),
-          toolbarHeight: 80,
-          centerTitle: true,
-          title: Column(
-            children: [
-              Text("Make home",style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary),),
-              SizedBox(height: 5,),
-              Text("BEAUTIFUL",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w700,color: primary,letterSpacing: .7),),
-            ],
-          ),
-          
-    
-    actions: [
-    
-      IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart_outlined,color: textSecondary,size: 30,))
-    ],
-        ),
-        body: 
-        Column(
+        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.search,
+              size: all / 39.57,
+              color: textSecondary,
+            )),
+        toolbarHeight: all / 14.84,
+        centerTitle: true,
+        title: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0),
-              child: CategoryList(),
+            Text(
+              "Make home",
+              style: TextStyle(
+                  fontSize: all / 65.95,
+                  fontWeight: FontWeight.w400,
+                  color: textSecondary),
             ),
-
-
-            // test prudact card
-PrudactList()
-            
+            SizedBox(
+              height: all / 237.4,
+            ),
+            Text(
+              "BEAUTIFUL",
+              style: TextStyle(
+                  fontSize: all / 59.35,
+                  fontWeight: FontWeight.w700,
+                  color: primary,
+                  letterSpacing: .7),
+            ),
           ],
         ),
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.shopping_cart_outlined,
+                color: textSecondary,
+                size: all / 65.95,
+              ))
+        ],
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: all / 118.7),
+            child: CategoryList(),
+          ),
+
+          // test prudact card
+          PrudactList()
+        ],
+      ),
     );
-    
   }
 }
