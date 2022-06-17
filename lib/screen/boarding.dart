@@ -11,27 +11,26 @@ class Boarding extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 25,
       ),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/images/maskGroup.png"),
           fit: BoxFit.cover,
         ),
       ),
       child: Container(
-        margin: EdgeInsets.only(top: 80),
+        margin: const EdgeInsets.only(top: 80),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-
+              children: const [
                 Text(
                   "MAKE YOUR",
                   style: TextStyle(
@@ -54,22 +53,42 @@ class Boarding extends StatelessWidget {
             SizedBox(
               height: 35,
             ),
-
-             
             Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
-                
-                Text("The best simple place where you", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
-                SizedBox(height: 12,),
-              
-              Text("discover most wonderful furnitures", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
-              SizedBox(height: 12,),
-              Text("and make your home beautiful", style: TextStyle(fontSize: 18,fontWeight: FontWeight.w400,color: textSecondary,fontFamily: "NunitoSans"),),
-              ],),
-
+                  Text(
+                    "The best simple place where you",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: textSecondary,
+                        fontFamily: "NunitoSans"),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    "discover most wonderful furnitures",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: textSecondary,
+                        fontFamily: "NunitoSans"),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  Text(
+                    "and make your home beautiful",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: textSecondary,
+                        fontFamily: "NunitoSans"),
+                  ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 150, bottom: 10),

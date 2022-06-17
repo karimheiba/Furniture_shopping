@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:furniture_shopping_app/data/data.dart';
-import 'package:furniture_shopping_app/data/model/productsModel.dart';
 import 'package:furniture_shopping_app/widget/products_in_favorite.dart';
 import 'package:furniture_shopping_app/widget/sign_button.dart';
+
+import '../../constans/size.dart';
 
 class FavoriteScreen extends StatefulWidget {
   FavoriteScreen({Key? key}) : super(key: key);
@@ -13,15 +13,18 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
+  MySize mySize = MySize();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    double width = size.width;
+    double height = size.height;
+    double all = height + width;
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: SignButton(
@@ -32,18 +35,20 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         appBar: AppBar(
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, "myCard");
+              },
               icon: Icon(
+                size: all / 59.35,
                 Icons.shopping_cart,
                 color: Colors.black,
               ),
             ),
           ],
           leading: IconButton(
-            onPressed: () {
-              Data.gitProd();
-            },
+            onPressed: () {},
             icon: Icon(
+              size: all / 59.35,
               Icons.search,
               color: Colors.black,
             ),
@@ -53,7 +58,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           title: Text(
             'Favorites',
             style: TextStyle(
-                fontSize: size.width / 23.4,
+                fontSize: all / 74.1,
                 fontWeight: FontWeight.w700,
                 color: Colors.black),
           ),

@@ -25,17 +25,12 @@ If you are planning to revamp your outdoor space, take a look at some of the key
 
 • Bright colors
 
-Vivid and saturated colors are becoming popular in the design of balconies, patios, and courtyards. If your furniture has muted shades or a calm color scheme, you can add a bright touch to the design of your garden furniture by using unusual colorful pillows, beautiful mattresses, extraordinary textile elements.
+Vivid and saturated colors are becoming popular in the design of balconies, 
 
-• Eco-friendly and sustainable material
 
-Eco-friendly materials such as rattan, wicker, bamboo, teak, reclaimed or recycled wood are increasingly becoming a market trend. Many people are longing for sturdy and eco-friendly furnishings that last longer and have less impact on the planet.
 
-• Bring the Indoors Outside
 
-Gone are the days when the outdoor was a neglected space with some cheap plastic furniture. Now, many people are craving the comfort and quality of indoor furniture out in the open air. This style blurs the lines between indoor and outdoor living, so one naturally flows into the other. You can make your outdoor space more pleasing with sofas, rugs and cushions.
-
-• Fitting-the Outdoor Living Spaces for Year-Round Use''',
+''',
     "price": 1500,
   },
 ];
