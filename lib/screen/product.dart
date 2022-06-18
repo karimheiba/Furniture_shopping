@@ -61,7 +61,9 @@ class _ProductScreenState extends State<ProductScreen> {
             width: 40,
             color: Colors.white,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               icon: const Icon(Icons.arrow_back_ios_new_rounded),
             ),
           ),
