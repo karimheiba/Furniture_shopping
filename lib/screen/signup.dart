@@ -74,7 +74,10 @@ CustomTextFormField(label: "Confirm Password",obscureText: true,showSuffix: true
 
   SizedBox(height: 40,),
 
-  SignButton(text: "Sign Up",onPressed: (){
+  SignButton(
+    buttonHight:50 ,
+    buttonWidth:285 ,
+    text: "Sign Up",onPressed: (){
   
   },
   ),

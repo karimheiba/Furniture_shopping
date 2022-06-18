@@ -28,6 +28,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: SignButton(
+          buttonHight:all/ 23.74 ,
+          buttonWidth:all/3.55 ,
           text: 'Add all to my cart',
           onPressed: () {},
         ),

@@ -11,6 +11,9 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+        double width = size.width;
+    double height = size.height;
+    double all = height + width;
     return Scaffold(
     
       body: SafeArea(
@@ -70,6 +73,8 @@ class Login extends StatelessWidget {
             height: 40,
           ),
           SignButton(
+            buttonHight: 50,
+            buttonWidth: 285,
             text: "Log in",
             onPressed: () {
               Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);

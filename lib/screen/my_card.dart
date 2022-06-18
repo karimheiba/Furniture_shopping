@@ -51,7 +51,12 @@ class MyCard extends StatelessWidget {
                 SizedBox(
                   height: all / 26.9,
                   width: all / 26.9,
-                  child: SignButton(text: '<', onPressed: () {}),
+                  child: SignButton(
+                    visualDensity: VisualDensity.standard ,
+                    buttonHight:all/23.74,
+                    buttonWidth:all/3.55 ,
+                    
+                    text: '<', onPressed: () {}),
                 ),
               ],
             ),
