@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/screen/home_screen.dart';
-import 'package:furniture_shopping_app/screen/login.dart';
-import 'package:furniture_shopping_app/screen/my_card.dart';
-import 'package:furniture_shopping_app/screen/signup.dart';
 
-import 'screen/boarding.dart';
+import 'screen/product.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,14 +14,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
-      routes: {
-        "/": (context) => Boarding(),
-        "login": (context) => Login(),
-        "signup": (context) => SignUp(),
-        "home": (context) => HomeScreen(),
-        "myCard": (context) => MyCard(),
-      },
+      // initialRoute: "/",
+      // routes: {
+      //   "/": (context) => Boarding(),
+      //   "login": (context) => Login(),
+      //   "signup": (context) => SignUp(),
+      //   "home": (context) => HomeScreen(),
+      //   "myCard": (context) => MyCard(),
+      // },
+      home: ProductScreen(),
       title: 'furniture shopping',
       theme: ThemeData(),
     );
