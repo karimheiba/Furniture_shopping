@@ -13,7 +13,7 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  MySize mySize = MySize();
+  // MySize mySize = MySize();
   @override
   void initState() {
     super.initState();

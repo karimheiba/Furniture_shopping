@@ -97,8 +97,8 @@ class Boarding extends StatelessWidget {
                 children: [
                   Center(
                     child: MaterialButton(
-                      minWidth: 159,
-                      height: 50,
+                      minWidth: MySize.customSize.gitSize(context,7.46 ),
+                      height: MySize.customSize.gitSize(context, 21.98),
                       color: primary,
                       textColor: Colors.white,
                       onPressed: () {

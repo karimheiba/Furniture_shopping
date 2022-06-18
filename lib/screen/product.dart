@@ -15,7 +15,7 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   List<bool> isSelected = List.generate(3, (index) => false);
-  int counter = 0;
+  int counter = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +159,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     padding: EdgeInsets.all(0),
                     onPressed: () {
                       setState(() {
-                        if (counter > 0) {
+                        if (counter > 1) {
                           counter--;
                         } else {
                           return null;
