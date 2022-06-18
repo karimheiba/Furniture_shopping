@@ -26,7 +26,7 @@ class HomeScreenTab extends StatelessWidget {
             onPressed: () {},
             icon: Icon(
               Icons.search,
-              size: all / 39.57,
+              size: all / 49.45,
               color: textSecondary,
             )),
         toolbarHeight: all / 14.84,
@@ -59,7 +59,7 @@ class HomeScreenTab extends StatelessWidget {
               icon: Icon(
                 Icons.shopping_cart_outlined,
                 color: textSecondary,
-                size: all / 65.95,
+                size: all / 49.45,
               ))
         ],
       ),
