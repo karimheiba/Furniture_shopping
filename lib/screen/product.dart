@@ -12,7 +12,7 @@ class ProductScreen extends StatefulWidget {
 
   }) ;
 int index;
-//  List<ProductModel> data=[];
+ List<ProductModel> data=[];
 //  List icon=[];
 
     
@@ -202,7 +202,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 width: 10,
               ),
               Text(
-                "4.5",
+                "${ProductModel.product[index].rating}",
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
