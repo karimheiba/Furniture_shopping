@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:furniture_shopping_app/constans/colors.dart';
+import 'package:furniture_shopping_app/data/model/productsModel.dart';
+import 'package:furniture_shopping_app/model/product_model.dart';
 import 'package:furniture_shopping_app/widget/color_pick.dart';
 import 'package:furniture_shopping_app/widget/sign_button.dart';
 
 class ProductScreen extends StatefulWidget {
-  const ProductScreen({
-    Key? key,
-  }) : super(key: key);
+  
+   ProductScreen({required this.index
+
+  }) ;
+int index;
+//  List<ProductModel> data=[];
+//  List icon=[];
+
+    
+
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -16,6 +25,7 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   List<bool> isSelected = List.generate(3, (index) => false);
   int counter = 1;
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +34,11 @@ class _ProductScreenState extends State<ProductScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          imageSection(),
+          imageSection(widget.index),
           const SizedBox(
             height: 25,
           ),
-          infoSection()
+          infoSection(widget.index)
         ],
       ),
     ));
@@ -36,7 +46,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   // this section for product image and color picker
 
-  Stack imageSection() {
+  Stack imageSection( int index) {
     return Stack(
       children: [
         Align(
@@ -45,12 +55,14 @@ class _ProductScreenState extends State<ProductScreen> {
             margin: const EdgeInsets.only(left: 52),
             height: 455,
             width: double.infinity,
-            decoration: const BoxDecoration(
+            decoration:  BoxDecoration(
                 borderRadius:
                     BorderRadius.only(bottomLeft: Radius.circular(70)),
                 image: DecorationImage(
-                    image: AssetImage("assets/images/item.png"),
-                    fit: BoxFit.cover)),
+                    image: AssetImage("${ProductModel.product[index].imageUrl}"),
+                    fit: BoxFit.cover)
+                    ),
+                  //  child: Image(image: AssetImage(ProductModel.product[index].imageUrl,),fit: BoxFit.cover,),
           ),
         ),
         Positioned(
@@ -93,14 +105,14 @@ class _ProductScreenState extends State<ProductScreen> {
 
   //this section for product description
 
-  Padding infoSection() {
+  Padding infoSection(int index) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Minimal Stand",
+           Text(
+            "${ProductModel.product[index].title}",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
@@ -109,8 +121,9 @@ class _ProductScreenState extends State<ProductScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "\$ 50",
+              Text(   "\$ ${ProductModel.product[index].price}",
+                
+             
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
@@ -217,7 +230,8 @@ class _ProductScreenState extends State<ProductScreen> {
                       fontFamily: "NunitoSans",
                       color: disabledButton),
                   text:
-                      "Minimal Stand is made of by natural wood. The design that is very simple and minimal. This is truly one of the best furnitures in any family for now. With 3 different colors, you can easily select the best match for your home. ")),
+                      ProductModel.product[index].description
+                      )),
           Padding(
             padding: const EdgeInsets.only(top: 20.0, bottom: 30),
             child: Row(

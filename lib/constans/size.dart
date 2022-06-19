@@ -11,7 +11,8 @@ class MySize {
     double width = size.width;
     double height = size.height;
    double all = height + width;
-   double mySize=all/screenSize;
+   double mediaSize=1187/screenSize;
+   double mySize=all/mediaSize;
    return mySize;
   }
 }

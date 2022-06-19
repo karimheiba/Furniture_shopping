@@ -97,8 +97,8 @@ class Boarding extends StatelessWidget {
                 children: [
                   Center(
                     child: MaterialButton(
-                      minWidth: MySize.customSize.gitSize(context,7.46 ),
-                      height: MySize.customSize.gitSize(context, 21.98),
+                      minWidth: MySize.customSize.gitSize(context,159 ),
+                      height: MySize.customSize.gitSize(context, 54),
                       color: primary,
                       textColor: Colors.white,
                       onPressed: () {
@@ -107,7 +107,7 @@ class Boarding extends StatelessWidget {
                       child: Text(
                         "Get Started",
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
+                            fontSize: MySize.customSize.gitSize(context, 18), fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
