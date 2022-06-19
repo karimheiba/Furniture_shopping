@@ -60,7 +60,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     BorderRadius.only(bottomLeft: Radius.circular(70)),
                 image: DecorationImage(
                     image: AssetImage("${ProductModel.product[index].imageUrl}"),
-                    fit: BoxFit.fill)
+                    fit: BoxFit.cover)
                     ),
                   //  child: Image(image: AssetImage(ProductModel.product[index].imageUrl,),fit: BoxFit.cover,),
           ),
