@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:furniture_shopping_app/constans/colors.dart';
+import 'package:furniture_shopping_app/model/product_model.dart';
+import 'package:furniture_shopping_app/screen/product.dart';
 
 class PrudactList extends StatelessWidget {
-  const PrudactList({Key? key}) : super(key: key);
+   PrudactList({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +31,7 @@ class PrudactList extends StatelessWidget {
           crossAxisSpacing: all / 59.35,
           mainAxisSpacing: all / 79.13,
         ),
-        itemCount: 10,
+        itemCount: ProductModel.product.length,
         itemBuilder: (context, index) {
 
           return SizedBox(
@@ -35,7 +39,7 @@ class PrudactList extends StatelessWidget {
             width: all / 7.56,
             child: GestureDetector(
               onTap: (){
-                 Navigator.pushNamed(context, "productitem");
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductScreen(index: index)));
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +51,7 @@ class PrudactList extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
                               image: AssetImage(
-                                "assets/images/item.png",
+                               ProductModel.product[index].imageUrl,
                               ),
                               fit: BoxFit.fill)),
                       child: Padding(
@@ -75,7 +79,7 @@ class PrudactList extends StatelessWidget {
                     height: all / 118.7,
                   ),
                   Text(
-                    "Black simple lamp",
+                    ProductModel.product[index].title,
                     style: TextStyle(
                         fontSize: all / 84.78,
                         fontWeight: FontWeight.w400,
@@ -85,7 +89,7 @@ class PrudactList extends StatelessWidget {
                   SizedBox(
                     height: all / 197.83,
                   ),
-                  Text("\$ 12",
+                  Text("\$ ${ProductModel.product[index].price}",
                       style: TextStyle(
                           fontSize: all / 84.78,
                           fontWeight: FontWeight.w700,

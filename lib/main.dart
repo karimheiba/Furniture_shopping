@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         "signup": (context) => SignUp(),
         "home": (context) => HomeScreen(),
         "myCard": (context) => MyCard(),
-        "productitem":(context) => ProductScreen(),
+        // "productitem":(context) => ProductScreen(),
       },
     
       title: 'furniture shopping',
