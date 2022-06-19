@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:furniture_shopping_app/data/model/productsModel.dart';
+import 'package:furniture_shopping_app/constans/size.dart';
 
 class ProductsInFavorite extends StatelessWidget {
   ProductsInFavorite({
@@ -23,8 +20,8 @@ class ProductsInFavorite extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: all / 11.87,
-              width: all / 11.87,
+              height: MySize.customSize.gitSize(context, 100),
+              width: MySize.customSize.gitSize(context, 100),
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
