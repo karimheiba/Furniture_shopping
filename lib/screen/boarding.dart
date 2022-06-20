@@ -11,113 +11,122 @@ class Boarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 25,
+        body: Column(
+          children: [
+            Container(
+
+      padding:  EdgeInsets.symmetric(
+            horizontal: MySize.customSize.gitSize(context,25 ),
       ),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/maskGroup.png"),
-          fit: BoxFit.cover,
-        ),
+      decoration:  BoxDecoration(
+
+            image: DecorationImage(
+              
+              image: AssetImage("assets/images/maskGroup.png"),
+              fit: BoxFit.fill,
+            ),
       ),
       child: Container(
-        margin: const EdgeInsets.only(top: 80),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Column(
+            margin:  EdgeInsets.only(top: MySize.customSize.gitSize(context,80 )),
+            child: Column(
+             
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "MAKE YOUR",
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                      color: textSecondary),
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:  [
+                    Text(
+                      "MAKE YOUR",
+                      style: TextStyle(
+                          fontSize: MySize.customSize.gitSize(context,24 ),
+                          fontWeight: FontWeight.w600,
+                          color: textSecondary),
+                    ),
+                    SizedBox(
+                      height: MySize.customSize.gitSize(context,15 ),
+                    ),
+                    Text(
+                      "HOME BEAUTIFUL",
+                      style: TextStyle(
+                          fontSize: MySize.customSize.gitSize(context,30 ),
+                          fontWeight: FontWeight.w700,
+                          color: primary),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 15,
+                Flexible(
+                  child: SizedBox(
+                    height: MySize.customSize.gitSize(context,35 ),
+                  ),
                 ),
-                Text(
-                  "HOME BEAUTIFUL",
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w700,
-                      color: primary),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 35,
-            ),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "The best simple place where you",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: textSecondary,
-                        fontFamily: "NunitoSans"),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "discover most wonderful furnitures",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: textSecondary,
-                        fontFamily: "NunitoSans"),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Text(
-                    "and make your home beautiful",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: textSecondary,
-                        fontFamily: "NunitoSans"),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 150, bottom: 10),
-              child: Column(
-                children: [
-                  Center(
-                    child: MaterialButton(
-                      minWidth: MySize.customSize.gitSize(context,159 ),
-                      height: MySize.customSize.gitSize(context, 54),
-                      color: primary,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, "login");
-                      },
-                      child: Text(
-                        "Get Started",
+                Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "The best simple place where you",
                         style: TextStyle(
-                            fontSize: MySize.customSize.gitSize(context, 18), fontWeight: FontWeight.w600),
+                            fontSize: MySize.customSize.gitSize(context,18 ),
+                            fontWeight: FontWeight.w400,
+                            color: textSecondary,
+                            fontFamily: "NunitoSans"),
+                      ),
+                      SizedBox(
+                        height: MySize.customSize.gitSize(context,12 ),
+                      ),
+                      Text(
+                        "discover most wonderful furnitures",
+                        style: TextStyle(
+                            fontSize: MySize.customSize.gitSize(context,18 ),
+                            fontWeight: FontWeight.w400,
+                            color: textSecondary,
+                            fontFamily: "NunitoSans"),
+                      ),
+                      SizedBox(
+                        height: MySize.customSize.gitSize(context,12 ),
+                      ),
+                      Text(
+                        "and make your home beautiful",
+                        style: TextStyle(
+                            fontSize: MySize.customSize.gitSize(context,18 ),
+                            fontWeight: FontWeight.w400,
+                            color: textSecondary,
+                            fontFamily: "NunitoSans"),
+                      ),
+                    ],
+                  ),
+                ),
+                Flexible(child: SizedBox(height:MySize.customSize.gitSize(context,150 ) ,)),
+                Column(
+                  children: [
+                    Center(
+                      child: MaterialButton(
+                        minWidth: MySize.customSize.gitSize(context,159 ),
+                        height: MySize.customSize.gitSize(context, 54),
+                        color: primary,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, "login");
+                        },
+                        child: Text(
+                          "Get Started",
+                          style: TextStyle(
+                              fontSize: MySize.customSize.gitSize(context, 18), fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+                    SizedBox(height: MySize.customSize.gitSize(context,10 ),)
+                  ],
+                )
+              ],
+            ),
       ),
-    ));
+    ),
+          ],
+        ));
   }
 }
 

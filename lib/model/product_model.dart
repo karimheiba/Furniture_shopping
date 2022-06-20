@@ -22,7 +22,17 @@ required this.title,
   
   });
 
+static List<ProductModel> listCategory = [];
 
+  static gitCategory(String categore) {
+    listCategory.clear();
+    product.forEach((element) {
+      if (element.category! == categore) {
+        listCategory.add(element);
+        print("this is ${element.id}");
+      }
+    });
+  }
    static List <ProductModel> product=[
     ProductModel(
      id: 1,

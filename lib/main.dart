@@ -4,7 +4,7 @@ import 'screen/boarding.dart';
 import 'screen/home_screen.dart';
 import 'screen/login.dart';
 import 'screen/my_card.dart';
-import 'screen/product.dart';
+
 import 'screen/signup.dart';
 
 void main() {
