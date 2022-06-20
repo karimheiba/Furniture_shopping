@@ -23,7 +23,7 @@ int index;
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  List<bool> isSelected = List.generate(3, (index) => false);
+
   int counter = 1;
  
 
