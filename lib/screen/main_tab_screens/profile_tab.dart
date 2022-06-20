@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/constans/colors.dart';
+import 'package:furniture_shopping_app/screen/test.dart';
 
 
 class ProfileScreen extends StatelessWidget {
@@ -55,7 +56,9 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 20.0),
               child: sectionCards(title: "My Order",note:"Alerady have 10 order",onPressed: (){} ),
             ),
-            sectionCards(title: "Shipping Addresses", note: "03 Addresses",onPressed: (){}),
+            sectionCards(title: "Shipping Addresses", note: "03 Addresses",onPressed: (){
+
+            }),
             sectionCards(title: "Payment Method", note: "You have 2 cards",onPressed: (){}),
             sectionCards(title: "My reviews", note: "Reviews for 5 items",onPressed: (){}),
             sectionCards(title: "Setting", note: "Notification, Password, FAQ, Contact",onPressed: (){})
