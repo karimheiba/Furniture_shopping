@@ -59,6 +59,7 @@ class ProfileScreen extends StatelessWidget {
                 child: sectionCards(context: context,
                   
                   title: "My Order",note:"Alerady have 10 order",onPressed: (){
+                    Navigator.pushNamed(context, "order");
            
                 } ),
               ),
