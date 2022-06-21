@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_shopping_app/screen/subPages/order_screen.dart';
 
 import 'screen/boarding.dart';
 import 'screen/home_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         "home": (context) => HomeScreen(),
         "myCard": (context) => MyCard(),
         // "productitem":(context) => ProductScreen(),
+        "order":(context) => OrderScreen(),
       },
     
       title: 'furniture shopping',
