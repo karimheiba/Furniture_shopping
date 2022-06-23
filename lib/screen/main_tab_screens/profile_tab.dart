@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/constans/colors.dart';
 import 'package:furniture_shopping_app/constans/size.dart';
+import 'package:furniture_shopping_app/screen/home_screen.dart';
+import 'package:furniture_shopping_app/screen/subPages/order_screen.dart';
 import 'package:furniture_shopping_app/screen/test.dart';
 
 
@@ -24,7 +26,11 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           IconButton(
             splashRadius: 17,
-            onPressed: (){}, icon: Icon(Icons.follow_the_signs_rounded))
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>    HomeScreen()
+            
+              ));
+            }, icon: Icon(Icons.follow_the_signs_rounded))
         ],
       ),
       
@@ -60,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                   
                   title: "My Order",note:"Alerady have 10 order",onPressed: (){
                     Navigator.pushNamed(context, "order");
-           
+     
                 } ),
               ),
               sectionCards(context: context,

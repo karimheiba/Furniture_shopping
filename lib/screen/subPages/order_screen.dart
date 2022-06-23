@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:furniture_shopping_app/constans/colors.dart';
 import 'package:furniture_shopping_app/constans/size.dart';
+import 'package:furniture_shopping_app/screen/home_screen.dart';
 
-class OrderScreen extends StatelessWidget {
+class OrderScreen extends StatefulWidget {
    OrderScreen({Key? key}) : super(key: key);
+
+  @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
   int currentindex=0;
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+    
       animationDuration: Duration(milliseconds: 500),
+    
       initialIndex: currentindex,
       length: 3,
       child: Scaffold(
@@ -20,12 +28,19 @@ class OrderScreen extends StatelessWidget {
           iconTheme: IconThemeData(color: primary,size: MySize.customSize.gitSize(context, 20)),
           elevation: 0,
           backgroundColor: Colors.white,
-          leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios)),
+          leading: IconButton(onPressed: (){
+
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen(currentIndex: 3,)));
+          }, icon: Icon(Icons.arrow_back_ios)),
           title: Text("My order"),
           centerTitle: true,
           titleTextStyle: TextStyle(fontSize: MySize.customSize.gitSize(context, 16),fontWeight: FontWeight.w700,color: primary),
           bottom: TabBar(
-            
+            onTap: (value) {
+              setState(() {
+                currentindex=value;
+              });
+            },
             indicatorColor: primary,
             indicatorWeight: 2,
            indicatorSize: TabBarIndicatorSize.label,
@@ -46,14 +61,14 @@ class OrderScreen extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             ListView.builder(itemCount: 7,
-              itemBuilder: ((context, index) => orderCard(index,currentindex))),
+              itemBuilder: ((context, index) => orderCard(index,currentindex,"Delivered",success))),
             Center(
               child:  ListView.builder(itemCount: 2,
-              itemBuilder: ((context, index) => orderCard(index,currentindex))),
+              itemBuilder: ((context, index) => orderCard(index,currentindex,"Processing",Colors.yellow[700]))),
             ),
             Center(
               child:  ListView.builder(itemCount: 1,
-              itemBuilder: ((context, index) => orderCard(index,currentindex))),
+              itemBuilder: ((context, index) => orderCard(index,currentindex,"Canceled",Colors.red[400]))),
             ),
           ],
         ),
@@ -62,7 +77,7 @@ class OrderScreen extends StatelessWidget {
     
   }
 
-   orderCard(int index,int currentindex) {
+   orderCard(int index,int currentindex,String status,Color? statusColor) {
     return 
            Padding(
              padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -141,7 +156,7 @@ SizedBox(height: 25,),
                               textColor: Colors.white,
                               color: primary,
                               onPressed: (){}, child: Text("Detail",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,fontFamily: "NunitoSans")),),
-                              Text( "Delivered",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,fontFamily: "NunitoSans",color: success))
+                              Text( status,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,fontFamily: "NunitoSans",color: statusColor ))
                           ],),
                         )
                      ],
