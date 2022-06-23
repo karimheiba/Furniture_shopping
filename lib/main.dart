@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_shopping_app/screen/main_tab_screens/profile_tab.dart';
 import 'package:furniture_shopping_app/screen/subPages/order_screen.dart';
 
 import 'screen/boarding.dart';
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
+      
       routes: {
         "/": (context) => Boarding(),
         "login": (context) => Login(),
@@ -29,6 +31,7 @@ class MyApp extends StatelessWidget {
         "myCard": (context) => MyCard(),
         // "productitem":(context) => ProductScreen(),
         "order":(context) => OrderScreen(),
+        "profile":(context) => ProfileScreen(),
       },
     
       title: 'furniture shopping',

@@ -15,14 +15,15 @@ import '../constans/colors.dart';
 
 
 class HomeScreen extends StatefulWidget {
- HomeScreen({Key? key}) : super(key: key);
+ HomeScreen({Key? key,this.currentIndex=0}) : super(key: key);
+   int currentIndex=0;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int currentIndex=0;
+
 
    List <Widget>screens=[
     HomeScreenTab(),
@@ -46,10 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
        
         selectedItemColor: primary,
         unselectedItemColor: disabledButton,
-        currentIndex: currentIndex,
+        currentIndex: widget.currentIndex,
         onTap: (index,){
           setState(() {
-            currentIndex=index;
+            widget.currentIndex=index;
          
           
          
@@ -73,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       ],
       ),
-      body:screens[currentIndex] ,
+      body:screens[widget.currentIndex] ,
     );
     
   }
