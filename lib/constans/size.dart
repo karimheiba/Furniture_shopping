@@ -8,9 +8,11 @@ class MySize {
     Size size = MediaQuery.of(context).size;
     double width = size.width;
     double height = size.height;
+
     double all = height + width;
     double mediaSize = all / screenSize;
     double mySize = all / mediaSize;
     return mySize;
+
   }
 }
