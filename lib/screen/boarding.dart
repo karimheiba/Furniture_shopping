@@ -99,7 +99,7 @@ class Boarding extends StatelessWidget {
                     ],
                   ),
                 ),
-                Flexible(child: SizedBox(height:MySize.customSize.gitSize(context,150 ) ,)),
+                Expanded(child: SizedBox( height:MySize.customSize.gitSize(context,5 ))),
                 Column(
                   children: [
                     Center(

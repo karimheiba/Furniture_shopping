@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/constans/size.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class ProductsInFavorite extends StatelessWidget {
-  ProductsInFavorite({
-    Key? key,
-  }) : super(key: key);
+class ProudactInCard extends StatelessWidget {
+  const ProudactInCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,6 @@ class ProductsInFavorite extends StatelessWidget {
     double width = size.width;
     double height = size.height;
     double all = height + width;
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: size.width / 18.25),
       child: SizedBox(
@@ -20,8 +18,8 @@ class ProductsInFavorite extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              height: MySize.customSize.gitSize(context, 100),
-              width: MySize.customSize.gitSize(context, 100),
+              height: all / 11.87,
+              width: all / 11.87,
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),

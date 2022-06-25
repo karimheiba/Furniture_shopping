@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:furniture_shopping_app/constans/size.dart';
 import 'package:furniture_shopping_app/widget/sign_button.dart';
 
 class MyCard extends StatelessWidget {
@@ -8,16 +7,16 @@ class MyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    double width = size.width;
-    double height = size.height;
-    double all = height + width;
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: widgetFloatingActionbutton(context),
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: Icon(
-            size: all / 59.35,
+            //size: MySize.customSize.gitSize(context, 20),
             Icons.arrow_back_ios_new,
             color: Colors.black,
           ),
@@ -27,39 +26,57 @@ class MyCard extends StatelessWidget {
         title: Text(
           'My Card',
           style: TextStyle(
-              fontSize: all / 74.1,
+              fontSize: MySize.customSize.gitSize(context, 16),
               fontWeight: FontWeight.w700,
               color: Colors.black),
         ),
         centerTitle: true,
       ),
       body: Column(
+        children: [],
+      ),
+    );
+  }
+
+  widgetFloatingActionbutton(BuildContext context) {
+    return Container(
+      padding: EdgeInsetsDirectional.only(
+        start: MySize.customSize.gitSize(context, 30),
+      ),
+      margin: EdgeInsetsDirectional.only(
+          bottom: MySize.customSize.gitSize(context, 157),
+          start: MySize.customSize.gitSize(context, 20),
+          end: MySize.customSize.gitSize(context, 20)),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(
+          MySize.customSize.gitSize(context, 15),
+        ),
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey,
+              blurRadius: 12,
+              spreadRadius: 1,
+              offset: Offset(0, 0))
+        ],
+      ),
+      child: Row(
         children: [
-          Container(
-            height: all / 23.74,
-            margin: EdgeInsetsDirectional.all(all / 59.35),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(
-                all / 74.1,
+          Expanded(
+            child: TextFormField(
+              decoration: InputDecoration(
+                focusedBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                hintText: 'Enter your promo code',
               ),
-              // boxShadow: [BoxShadow(blurRadius: 0, spreadRadius: 0)],
             ),
-            child: Row(
-              children: [
-                Expanded(child: TextFormField()),
-                SizedBox(
-                  height: all / 26.9,
-                  width: all / 26.9,
-                  child: SignButton(
-                    visualDensity: VisualDensity.standard ,
-                    buttonHight:all/23.74,
-                    buttonWidth:all/3.55 ,
-                    
-                    text: '<', onPressed: () {}),
-                ),
-              ],
-            ),
+          ),
+          SignButton(
+            visualDensity: VisualDensity.standard,
+            buttonHight: MySize.customSize.gitSize(context, 44),
+            buttonWidth: MySize.customSize.gitSize(context, 44),
+            text: '<',
+            onPressed: () {},
           ),
         ],
       ),
