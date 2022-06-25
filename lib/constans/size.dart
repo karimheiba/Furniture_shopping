@@ -14,5 +14,6 @@ class MySize {
    double mediaSize=1187/screenSize;
    double mySize=all/mediaSize;
    return mySize;
+   // hello khaled
   }
 }
