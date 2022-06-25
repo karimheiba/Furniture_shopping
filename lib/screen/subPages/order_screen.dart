@@ -23,7 +23,7 @@ class _OrderScreenState extends State<OrderScreen> {
       initialIndex: currentindex,
       length: 3,
       child: Scaffold(
-        
+        // appbar section
         appBar: AppBar(
           iconTheme: IconThemeData(color: primary,size: MySize.customSize.gitSize(context, 20)),
           elevation: 0,
@@ -35,6 +35,9 @@ class _OrderScreenState extends State<OrderScreen> {
           title: Text("My order"),
           centerTitle: true,
           titleTextStyle: TextStyle(fontSize: MySize.customSize.gitSize(context, 16),fontWeight: FontWeight.w700,color: primary),
+
+// here the tab under the appbar 
+
           bottom: TabBar(
             onTap: (value) {
               setState(() {
@@ -58,6 +61,8 @@ class _OrderScreenState extends State<OrderScreen> {
           ]),
           
         ),
+
+        // here we build  a screen for the tabs 
         body: TabBarView(
           children: <Widget>[
             ListView.builder(itemCount: 7,
@@ -76,6 +81,9 @@ class _OrderScreenState extends State<OrderScreen> {
     );
     
   }
+
+
+  // order section to build the card that will be shoing in every tab 
 
    orderCard(int index,int currentindex,String status,Color? statusColor) {
     return 
@@ -131,7 +139,7 @@ class _OrderScreenState extends State<OrderScreen> {
                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(children: [
+                              Row(children:const [
                                 Text("Quantity :",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,fontFamily: "NunitoSans",color: textSecondary),),
                              Text(" 03",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700,fontFamily: "NunitoSans"),),
                        

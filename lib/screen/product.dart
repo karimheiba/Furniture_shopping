@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:furniture_shopping_app/constans/colors.dart';
+import 'package:furniture_shopping_app/constans/size.dart';
 import 'package:furniture_shopping_app/data/model/productsModel.dart';
 import 'package:furniture_shopping_app/model/product_model.dart';
 import 'package:furniture_shopping_app/widget/color_pick.dart';
@@ -216,13 +217,17 @@ class _ProductScreenState extends State<ProductScreen> {
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       fontFamily: "NunitoSans",
-                      color: disabledButton))
+                      color: disabledButton)),
+
+           
             ],
           ),
           SizedBox(
             height: 14,
           ),
           RichText(
+            
+
               text: TextSpan(
                   style: TextStyle(
                       fontSize: 14,
@@ -245,11 +250,13 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: Icon(Icons.bookmark_border),
                 ),
                 SizedBox(width: 15,),
-                SignButton(
-                  visualDensity: VisualDensity.standard,
-                  buttonHight:60 ,
-                  buttonWidth:250 ,
-                  text: "Add to cart", onPressed: (){})
+                Flexible(
+                  child: SignButton(
+                    visualDensity: VisualDensity.standard,
+                    buttonHight:MySize.customSize.gitSize(context, 60) ,
+                    buttonWidth:250 ,
+                    text: "Add to cart", onPressed: (){}),
+                )
               ],
             ),
           )
