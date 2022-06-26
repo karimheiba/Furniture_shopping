@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/widget/products_in_favorite.dart';
 import 'package:furniture_shopping_app/widget/sign_button.dart';
 
-import '../../constans/size.dart';
+import '../../core/constans/size.dart';
 
 class FavoriteScreen extends StatefulWidget {
   FavoriteScreen({Key? key}) : super(key: key);

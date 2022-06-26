@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/constans/size.dart';
+import 'package:furniture_shopping_app/core/constans/size.dart';
 
 class ProductsInFavorite extends StatelessWidget {
   ProductsInFavorite({

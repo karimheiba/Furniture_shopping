@@ -9,7 +9,7 @@ import 'package:furniture_shopping_app/screen/main_tab_screens/profile_tab.dart'
 
 
 
-import '../constans/colors.dart';
+import '../core/constans/colors.dart';
 
 
 

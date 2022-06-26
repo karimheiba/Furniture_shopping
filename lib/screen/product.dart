@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:furniture_shopping_app/constans/colors.dart';
-import 'package:furniture_shopping_app/constans/size.dart';
+import 'package:furniture_shopping_app/core/constans/colors.dart';
+import 'package:furniture_shopping_app/core/constans/size.dart';
 import 'package:furniture_shopping_app/data/model/productsModel.dart';
 import 'package:furniture_shopping_app/model/product_model.dart';
 import 'package:furniture_shopping_app/widget/color_pick.dart';
