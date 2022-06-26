@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
-import 'package:furniture_shopping_app/data/model/productsModel.dart';
-import 'package:furniture_shopping_app/model/product_model.dart';
-import 'package:furniture_shopping_app/widget/color_pick.dart';
-import 'package:furniture_shopping_app/widget/sign_button.dart';
+import 'package:furniture_shopping_app/data/model/product_model.dart';
+import 'package:furniture_shopping_app/ui/widget/color_pick.dart';
+import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
 class ProductScreen extends StatefulWidget {
   
