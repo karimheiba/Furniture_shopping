@@ -1,7 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import '../constans/colors.dart';
+import '../../core/constans/colors.dart';
+
 
 class CategoryList extends StatefulWidget {
   @override

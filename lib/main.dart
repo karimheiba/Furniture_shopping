@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/screen/main_tab_screens/profile_tab.dart';
-import 'package:furniture_shopping_app/screen/subPages/order_screen.dart';
 
-import 'screen/boarding.dart';
-import 'screen/home_screen.dart';
-import 'screen/login.dart';
-import 'screen/my_card.dart';
+import 'ui/screen/boarding.dart';
+import 'ui/screen/home_screen.dart';
+import 'ui/screen/login.dart';
+import 'ui/screen/my_card.dart';
+import 'ui/screen/signup.dart';
 
-import 'screen/signup.dart';
+import 'ui/screen/main_tab_screens/profile_tab.dart';
+import 'ui/screen/subPages/order_screen.dart';
+
 
 void main() {
   runApp(const MyApp());

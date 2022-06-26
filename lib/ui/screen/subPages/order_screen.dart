@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:furniture_shopping_app/constans/colors.dart';
-import 'package:furniture_shopping_app/constans/size.dart';
-import 'package:furniture_shopping_app/screen/home_screen.dart';
+import '../../../core/constans/colors.dart';
+import '../../../core/constans/size.dart';
+import '../home_screen.dart';
 
 class OrderScreen extends StatefulWidget {
    OrderScreen({Key? key}) : super(key: key);

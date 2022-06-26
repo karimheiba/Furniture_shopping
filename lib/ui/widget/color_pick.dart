@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/constans/colors.dart';
+import '../../core/constans/colors.dart';
 
 
 class ColorPicker extends StatefulWidget {

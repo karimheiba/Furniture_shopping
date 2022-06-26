@@ -1,11 +1,11 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/constans/colors.dart';
-import 'package:furniture_shopping_app/constans/size.dart';
-import 'package:furniture_shopping_app/screen/home_screen.dart';
-import 'package:furniture_shopping_app/screen/subPages/order_screen.dart';
-import 'package:furniture_shopping_app/screen/test.dart';
+import '../../../core/constans/colors.dart';
+import '../../../core/constans/size.dart';
+import '../home_screen.dart';
+import '../subPages/order_screen.dart';
+import '../test.dart';
 
 
 class ProfileScreen extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:furniture_shopping_app/constans/colors.dart';
+import '../../core/constans/colors.dart';
 
 class SignButton extends StatelessWidget {
   const SignButton({Key? key, required this.text, required this.onPressed, required this.buttonHight,required this.buttonWidth,this.visualDensity=VisualDensity.comfortable})

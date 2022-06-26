@@ -1,5 +1,5 @@
-import 'package:furniture_shopping_app/data/dataManul.dart';
-import 'package:furniture_shopping_app/data/model/productsModel.dart';
+import 'dataManul.dart';
+import 'model/productsModel.dart';
 
 class Data {
   List<ProductsModel> prodctes = [];

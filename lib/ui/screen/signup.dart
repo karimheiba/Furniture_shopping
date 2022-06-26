@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:furniture_shopping_app/constans/colors.dart';
-import 'package:furniture_shopping_app/widget/custom_text_formfield.dart';
-import 'package:furniture_shopping_app/widget/sign_button.dart';
+import '../../core/constans/colors.dart';
+import '../widget/custom_text_formfield.dart';
+import '../widget/sign_button.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({Key? key}) : super(key: key);
