@@ -10,7 +10,8 @@ class MySize {
     double height = size.height;
 
     double all = height + width;
-    double mediaSize = all / screenSize;
+    double mediaSize = 1178 / screenSize;
+    
     double mySize = all / mediaSize;
     return mySize;
 
