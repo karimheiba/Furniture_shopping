@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:furniture_shopping_app/core/constans/colors.dart';
-import 'package:furniture_shopping_app/model/product_model.dart';
-import 'package:furniture_shopping_app/screen/product.dart';
+import 'package:furniture_shopping_app/data/model/product_model.dart';
+
+import '../screen/product.dart';
+
 
 class PrudactList extends StatelessWidget {
    PrudactList({Key? key}) : super(key: key);

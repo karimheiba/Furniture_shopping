@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/widget/category_list.dart';
 
 
 class NotificationScreen extends StatelessWidget {

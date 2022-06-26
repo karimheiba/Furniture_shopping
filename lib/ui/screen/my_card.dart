@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
-import 'package:furniture_shopping_app/widget/sign_button.dart';
+import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
 class MyCard extends StatelessWidget {
   const MyCard({Key? key}) : super(key: key);

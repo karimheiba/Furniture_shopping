@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:furniture_shopping_app/core/constans/colors.dart';
+import 'package:furniture_shopping_app/ui/widget/category_list.dart';
+import 'package:furniture_shopping_app/ui/widget/prudact_list.dart';
 
-import 'package:furniture_shopping_app/widget/category_list.dart';
-import 'package:furniture_shopping_app/widget/prudact_list.dart';
-
-import '../../core/constans/colors.dart';
 
 class HomeScreenTab extends StatelessWidget {
   const HomeScreenTab({Key? key}) : super(key: key);

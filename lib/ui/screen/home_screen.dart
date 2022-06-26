@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 
 
-import 'package:furniture_shopping_app/screen/main_tab_screens/favorite_tab.dart';
-import 'package:furniture_shopping_app/screen/main_tab_screens/home_tab_screen.dart';
-import 'package:furniture_shopping_app/screen/main_tab_screens/notification_tab.dart';
-import 'package:furniture_shopping_app/screen/main_tab_screens/profile_tab.dart';
+import 'package:furniture_shopping_app/ui/screen/main_tab_screens/favorite_tab.dart';
+import 'package:furniture_shopping_app/ui/screen/main_tab_screens/home_tab_screen.dart';
+import 'package:furniture_shopping_app/ui/screen/main_tab_screens/notification_tab.dart';
+import 'package:furniture_shopping_app/ui/screen/main_tab_screens/profile_tab.dart';
 
-
-
-import '../core/constans/colors.dart';
+import '../../core/constans/colors.dart';
 
 
 
