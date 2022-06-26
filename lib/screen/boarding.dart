@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/constans/colors.dart';
-import 'package:furniture_shopping_app/constans/size.dart';
+import 'package:furniture_shopping_app/core/constans/colors.dart';
+import 'package:furniture_shopping_app/core/constans/size.dart';
 import 'package:furniture_shopping_app/data/data.dart';
 
 class Boarding extends StatelessWidget {

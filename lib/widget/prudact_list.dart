@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:furniture_shopping_app/constans/colors.dart';
+import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/model/product_model.dart';
 import 'package:furniture_shopping_app/screen/product.dart';
 

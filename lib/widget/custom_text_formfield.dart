@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constans/colors.dart';
+import '../core/constans/colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
   CustomTextFormField({Key? key, required this.label,this.obscureText=false,this.showSuffix=false})
