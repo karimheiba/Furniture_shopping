@@ -13,7 +13,7 @@ import 'package:furniture_shopping_app/ui/screen/subPages/order_screen.dart';
 
 class AppRoute {
   static Route? generateRoute(RouteSettings settings) {
-    AuthRepoImpl? authRepo;
+    AuthRepoImpl authRepo = AuthRepoImpl();
     switch (settings.name) {
       case onBoardingScreen:
         return MaterialPageRoute(builder: (context) => Boarding());
@@ -21,13 +21,13 @@ class AppRoute {
       case logInScreen:
         return MaterialPageRoute(
             builder: (context) => BlocProvider<AuthBloc>(
-                  create: (context) => AuthBloc(authRepo: authRepo!),
+                  create: (context) => AuthBloc(authRepo: authRepo),
                   child: const LoginScreen(),
                 ));
       case signUpScreen:
         return MaterialPageRoute(
             builder: (context) => BlocProvider<AuthBloc>(
-                  create: (context) => AuthBloc(authRepo: authRepo!),
+                  create: (context) => AuthBloc(authRepo: authRepo),
                   child: const SignUpScreen(),
                 ));
 
@@ -38,7 +38,7 @@ class AppRoute {
         return MaterialPageRoute(builder: (context) => const MyCard());
 
       case profileScreen:
-        return MaterialPageRoute(builder: (context) => const ProfileScreen());
+        return MaterialPageRoute(builder: (context) =>  BlocProvider<AuthBloc>.value(value: settings.arguments! as AuthBloc));
 
       case ordersScreen:
         return MaterialPageRoute(builder: (context) => OrderScreen());
