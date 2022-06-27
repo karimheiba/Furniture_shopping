@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 
 import 'package:furniture_shopping_app/core/constans/colors.dart';
+import 'package:furniture_shopping_app/core/constans/strings.dart';
 
 import 'package:furniture_shopping_app/ui/widget/custom_text_formfield.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-        double width = size.width;
+    double width = size.width;
     double height = size.height;
     double all = height + width;
+    print(all);
     return Scaffold(
-    
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -27,7 +28,8 @@ class Login extends StatelessWidget {
                 child: logoScection(),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
                 child: welcomeSection(),
               ),
               fieldSection(context)
@@ -40,8 +42,8 @@ class Login extends StatelessWidget {
 
   Container fieldSection(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 30),
-      padding: EdgeInsets.only(left: 30, top: 38),
+      margin: const EdgeInsets.only(right: 30),
+      padding: const EdgeInsets.only(left: 30, top: 38),
       width: double.infinity,
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(boxShadow: [
@@ -56,20 +58,26 @@ class Login extends StatelessWidget {
           CustomTextFormField(
             label: "Email",
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
           CustomTextFormField(
-              label: "Password",obscureText: true,showSuffix: true, ),
-          SizedBox(
+            label: "Password",
+            obscureText: true,
+            showSuffix: true,
+          ),
+          const SizedBox(
             height: 35,
           ),
-          Text(
+          const Text(
             "Forgot password",
             style: TextStyle(
-                fontSize: 18, fontWeight: FontWeight.w600, color: primary,fontFamily: "NunitoSans"),
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+                color: primary,
+                fontFamily: "NunitoSans"),
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           SignButton(
@@ -77,23 +85,25 @@ class Login extends StatelessWidget {
             buttonWidth: 285,
             text: "Log in",
             onPressed: () {
-              Navigator.pushNamedAndRemoveUntil(context, "home", (route) => false);
-              
+              Navigator.pushNamed(context, homeScreen);
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, "signup");
+                Navigator.pushReplacementNamed(context, signUpScreen);
               },
-              child: Text(
+              child: const Text(
                 "Sign Up",
                 style: TextStyle(
-                    fontSize: 18, fontWeight: FontWeight.w600, color: primary,fontFamily: "NunitoSans"),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: primary,
+                    fontFamily: "NunitoSans"),
               )),
-          SizedBox(
+          const SizedBox(
             height: 37,
           )
         ],

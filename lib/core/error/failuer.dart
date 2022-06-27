@@ -4,13 +4,12 @@ class Failure implements Exception {
   const Failure({required this.message});
 }
 
-
 /// register status code failure
 class RegisterFailure extends Failure {
   const RegisterFailure(String message) : super(message: message);
 
   factory RegisterFailure.fromCode(String code) {
-   switch (code) {
+    switch (code) {
       case 'invalid-email':
         return const RegisterFailure(
           'Email is not valid or badly formatted.',
@@ -40,7 +39,7 @@ class RegisterFailure extends Failure {
 }
 
 /// login status code failure
- class LoginFailure extends Failure {
+class LoginFailure extends Failure {
   const LoginFailure(String message) : super(message: message);
 
   factory LoginFailure.fromCode(String code) {
@@ -67,4 +66,10 @@ class RegisterFailure extends Failure {
         );
     }
   }
+}
+
+class UnknownFailure extends Failure {
+  UnknownFailure({
+    String message = 'Unknown error occurred, please try again later',
+  }) : super(message: message);
 }
