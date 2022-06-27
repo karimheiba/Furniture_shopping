@@ -38,6 +38,7 @@ class AuthRepoImpl extends AuthRepo {
         name: user.user!.displayName!,
         email: email,
         password: password,
+         memberSince: user.user!.metadata.creationTime.toString(),
       );
       return Right(logInUser);
     } on FirebaseAuthException catch (e) {
