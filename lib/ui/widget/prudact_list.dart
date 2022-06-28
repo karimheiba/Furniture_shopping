@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:furniture_shopping_app/core/constans/colors.dart';
-import 'package:furniture_shopping_app/data/model/product_model.dart';
+import 'package:furniture_shopping_app/data/models/product_model.dart';
 
 import '../screen/product.dart';
 

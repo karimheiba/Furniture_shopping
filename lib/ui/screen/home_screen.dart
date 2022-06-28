@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:furniture_shopping_app/core/constans/strings.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
 
 import 'package:furniture_shopping_app/ui/screen/main_tab_screens/favorite_tab.dart';
@@ -9,6 +10,7 @@ import 'package:furniture_shopping_app/ui/screen/main_tab_screens/profile_tab.da
 
 import '../../business_logic/blocs/home/home_bloc.dart';
 import '../../core/constans/colors.dart';
+import '../../core/widgets/custom_snack_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key, this.currentIndex = 0}) : super(key: key);
@@ -36,9 +38,6 @@ class HomeScreen extends StatelessWidget {
             unselectedItemColor: disabledButton,
             currentIndex: iconColor,
             onTap: (index) {
-              // setState(() {
-              //   widget.currentIndex = index;
-              // });
               for (var s = 0; s <= screens.length; s++) {
                 if (s == index) {
                   currentIndex = index;
@@ -71,21 +70,27 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: BlocBuilder<HomeBloc, HomeState>(
+          body: BlocConsumer<HomeBloc, HomeState>(
+            listener: (contex, state) {
+              if (state is SuccessLogOutState) {
+                SnackBarMessage.showSuccessMessage(
+                    message: state.message, context: context);
+                Navigator.pushNamedAndRemoveUntil(
+                    context, logInScreen, (route) => false);
+              } else if (state is ErrorLogOutState) {
+                SnackBarMessage.showSuccessMessage(
+                    message: state.message, context: context);
+              }
+            },
             builder: (context, state) {
               if (state is HomeLoading) {
-                //TODO Add Loading Widget
                 return const LoadingWidget();
               } else if (state is HomeLoaded) {
                 return screens[0];
               } else if (state is BodyHomeLoaded) {
                 return screens[currentIndex];
               }
-              return Container(
-                child: Center(
-                  child: Text('No data'),
-                ),
-              );
+              return const LoadingWidget();
             },
           ),
         );

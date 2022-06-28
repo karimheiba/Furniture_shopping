@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:furniture_shopping_app/data/data_services/local_data_sources.dart';
 import 'package:furniture_shopping_app/data/data_services/remote_data_sources.dart';
-import 'package:furniture_shopping_app/data/model/user_data_model.dart';
+import 'package:furniture_shopping_app/data/models/user_data_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/error/failuer.dart';
@@ -19,7 +19,7 @@ abstract class AuthRepo {
 }
 
 class AuthRepoImpl extends AuthRepo {
-  final LocalDataSource localDataSource;
+  final LocalDataSourceImpl localDataSource;
 
   AuthRepoImpl({required this.localDataSource});
   @override
