@@ -8,8 +8,8 @@ import 'ui/screen/subPages/shipping_address.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-  // await di.init();
+  await Firebase.initializeApp();
+  await di.init();
   runApp(const MyApp());
 }
 
@@ -32,9 +32,8 @@ class MyApp extends StatelessWidget {
       //   "order": (context) => OrderScreen(),
       //   "profile": (context) => ProfileScreen(),
       // },
-      // onGenerateRoute: AppRoute.generateRoute,
+      onGenerateRoute: AppRoute.generateRoute,
 
-home: ShippingAddreesScreen(),
       title: 'furniture shopping',
       theme: ThemeData(
         appBarTheme: AppBarTheme(elevation: 0,
