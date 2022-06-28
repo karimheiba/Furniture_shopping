@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/core/app_route.dart';
+import 'package:furniture_shopping_app/ui/screen/subPages/check_out.dart';
+import 'core/constans/colors.dart';
 import 'core/injection_container.dart' as di;
 
 void main() async {
@@ -31,7 +33,14 @@ class MyApp extends StatelessWidget {
       // },
       onGenerateRoute: AppRoute.generateRoute,
       title: 'furniture shopping',
-      theme: ThemeData(),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(elevation: 0,
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        titleTextStyle: TextStyle(fontSize: 16,fontWeight: FontWeight.w700,color: primary),
+        iconTheme: IconThemeData(color: primary,size: 20)
+        )
+      ),
     );
   }
 }
