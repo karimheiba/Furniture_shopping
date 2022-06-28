@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
-import 'package:furniture_shopping_app/data/model/product_model.dart';
+import 'package:furniture_shopping_app/data/models/product_model.dart';
 import 'package:furniture_shopping_app/ui/widget/color_pick.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 

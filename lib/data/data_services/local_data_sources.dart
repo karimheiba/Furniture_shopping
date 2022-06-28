@@ -4,7 +4,7 @@ import '../../core/error/failuer.dart';
 
 abstract class LocalDataSource {
   Future<void> cacheUserId(String userId);
-  String getCachedUserId();
+   getCachedUserId();
   Future<void> clearCacheUserId();
 }
 
@@ -18,12 +18,13 @@ class LocalDataSourceImpl extends LocalDataSource {
   }
 
   @override
-  String getCachedUserId() {
+   getCachedUserId() {
     final userId = sharedPreferences.getString("CACHE_USER_ID");
     if (userId != null) {
       return userId;
     }
-    throw const Failure(message: 'No User Id found');
+    return null;
+    //throw const Failure(message: 'No User Id found');
   }
 
   Future<void> clearCacheUserId() async {

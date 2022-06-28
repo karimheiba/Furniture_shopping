@@ -12,13 +12,13 @@ Future<void> init() async {
   inj.registerFactory(() => HomeBloc(authRepo: inj(),localDataSource: inj()));
 
   // Repositories
-  inj.registerLazySingleton<AuthRepo>(
+  inj.registerLazySingleton<AuthRepoImpl>(
       () => AuthRepoImpl(localDataSource: inj()));
 
   // DataSources
-  inj.registerLazySingleton<LocalDataSource>(
+  inj.registerLazySingleton<LocalDataSourceImpl>(
       () => LocalDataSourceImpl(sharedPreferences: inj()));
-
+ 
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   inj.registerLazySingleton(() => sharedPreferences);

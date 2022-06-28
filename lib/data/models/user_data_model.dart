@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:furniture_shopping_app/data/model/products_data_model.dart';
+import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 
 class UserDataModel extends UserData {
-  UserDataModel({
+  const UserDataModel({
     required String id,
     required String name,
     required String email,
@@ -120,7 +120,7 @@ class UserData extends Equatable {
   final List<ProductDataModel> favorites;
   final List<Map<String, dynamic>> cartProducts;
   final String memberSince;
-  UserData({
+  const UserData({
     required this.id,
     required this.name,
     required this.email,
@@ -169,7 +169,6 @@ class UserData extends Equatable {
   }
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         name,
         password,
