@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:furniture_shopping_app/core/constans/colors.dart';
-import 'package:furniture_shopping_app/ui/widget/adrees_info_card.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
 class CheckOutScreen extends StatelessWidget {
