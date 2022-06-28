@@ -10,30 +10,34 @@ import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
 import '../../business_logic/blocs/auth/auth_bloc.dart';
 import '../../core/widgets/custom_snack_bar.dart';
+import 'package:furniture_shopping_app/core/injection_container.dart' as inj;
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 25.0, horizontal: 30),
-                child: logoScection(),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
-                child: welcomeSection(),
-              ),
-              fieldSection(context),
-            ],
+    return BlocProvider(
+      create: (context) => AuthBloc(authRepo: inj.inj(),localDataSource: inj.inj()),
+      child: Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 25.0, horizontal: 30),
+                  child: logoScection(),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+                  child: welcomeSection(),
+                ),
+                fieldSection(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -91,7 +95,7 @@ class LoginScreen extends StatelessWidget {
                 if (state is AuthSuccess) {
                   SnackBarMessage.showSuccessMessage(
                       message: 'Success Login User', context: context);
-                  Navigator.pushNamed(context, homeScreen);
+                  Navigator.pushNamed(context, homeScreen,arguments: context.read<AuthBloc>());
                 } else if (state is AuthError) {
                   SnackBarMessage.showErrorMessage(
                       message: state.message, context: context);

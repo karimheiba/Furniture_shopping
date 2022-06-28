@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:furniture_shopping_app/data/data_services/local_data_sources.dart';
 import 'package:furniture_shopping_app/data/data_services/remote_data_sources.dart';
 import 'package:furniture_shopping_app/data/model/user_data_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/error/failuer.dart';
 
@@ -12,9 +14,14 @@ abstract class AuthRepo {
       String email, String password);
 
   Future<Either<Failure, UserDataModel>> getUserData(String userId);
+
+  Future<Either<Failure, void>> logOutUser();
 }
 
 class AuthRepoImpl extends AuthRepo {
+  final LocalDataSource localDataSource;
+
+  AuthRepoImpl({required this.localDataSource});
   @override
   Future<Either<Failure, UserDataModel>> createNewUser(
       String email, String password, String name) async {
@@ -38,8 +45,9 @@ class AuthRepoImpl extends AuthRepo {
         name: user.user!.displayName!,
         email: email,
         password: password,
-         memberSince: user.user!.metadata.creationTime.toString(),
+        memberSince: user.user!.metadata.creationTime.toString(),
       );
+      await localDataSource.cacheUserId(user.user!.uid);
       return Right(logInUser);
     } on FirebaseAuthException catch (e) {
       return Left(RegisterFailure.fromCode(e.code));
@@ -54,6 +62,18 @@ class AuthRepoImpl extends AuthRepo {
           UserDataModel.fromJson(user.data() as Map<String, dynamic>);
       return Right(userData);
     } on FirebaseException catch (e) {
+      return Left(UnknownFailure(message: e.code));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> logOutUser() async {
+    try {
+      await RemoteDataSourceImp.instance.LogOut();
+      await localDataSource.clearCacheUserId();
+     
+      return const Right(unit);
+    } on FirebaseAuthException catch (e) {
       return Left(UnknownFailure(message: e.code));
     }
   }
