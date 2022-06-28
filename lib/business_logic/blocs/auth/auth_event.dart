@@ -34,12 +34,6 @@ class LogInUserAuthEvent extends AuthEvent {
       ];
 }
 
-class GetUserDataAuthEvent extends AuthEvent {
-  final String userId;
 
-  const GetUserDataAuthEvent({required this.userId});
-  @override
-  List<Object> get props => [
-        userId,
-      ];
-}
+
+class LogOutAuthEvent extends AuthEvent{}

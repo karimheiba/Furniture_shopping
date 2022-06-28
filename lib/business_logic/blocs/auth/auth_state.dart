@@ -26,7 +26,10 @@ class AuthGetUserData extends AuthState {
   final UserDataModel userData;
 
   const AuthGetUserData({required this.userData});
-  
+
   @override
   List<Object> get props => [userData];
 }
+
+
+
