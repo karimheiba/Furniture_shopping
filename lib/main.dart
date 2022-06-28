@@ -1,14 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:furniture_shopping_app/ui/screen/home_screen.dart';
-import 'package:furniture_shopping_app/ui/screen/login.dart';
-import 'package:furniture_shopping_app/ui/screen/main_tab_screens/profile_tab.dart';
-import 'package:furniture_shopping_app/ui/screen/my_card.dart';
-import 'package:furniture_shopping_app/ui/screen/signup.dart';
-import 'package:furniture_shopping_app/ui/screen/subPages/order_screen.dart';
+import 'package:furniture_shopping_app/core/app_route.dart';
+import 'core/injection_container.dart' as di;
 
-import 'ui/screen/boarding.dart';
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await di.init();
   runApp(const MyApp());
 }
 
@@ -20,17 +18,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
-      routes: {
-        "/": (context) => Boarding(),
-        "login": (context) => Login(),
-        "signup": (context) => SignUp(),
-        "home": (context) => HomeScreen(),
-        "myCard": (context) => MyCard(),
-        // "productitem":(context) => ProductScreen(),
-        "order": (context) => OrderScreen(),
-        "profile": (context) => ProfileScreen(),
-      },
+      // initialRoute: "/",
+      // routes: {
+      //   "/": (context) => Boarding(),
+      //   "login": (context) => LoginScreen(),
+      //   "signup": (context) => SignUpScreen(),
+      //   "home": (context) => HomeScreen(),
+      //   "myCard": (context) => MyCard(),
+      //   // "productitem":(context) => ProductScreen(),
+      //   "order": (context) => OrderScreen(),
+      //   "profile": (context) => ProfileScreen(),
+      // },
+      onGenerateRoute: AppRoute.generateRoute,
       title: 'furniture shopping',
       theme: ThemeData(),
     );

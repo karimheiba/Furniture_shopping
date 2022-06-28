@@ -6,6 +6,7 @@ abstract class RemoteDataSource {
   /// Auth Data Source
   Future<UserDataModel> createUser(String email, String password, String name);
   Future<UserCredential> logInUser(String email, String password);
+
   /// User Data Source
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String userId);
 }
@@ -55,5 +56,9 @@ class RemoteDataSourceImp extends RemoteDataSource {
     final userData =
         await FirebaseFirestore.instance.collection('users').doc(userId).get();
     return userData;
+  }
+
+  Future<void> LogOut() async {
+    await auth.signOut();
   }
 }

@@ -1,52 +1,35 @@
 import 'package:equatable/equatable.dart';
 import 'package:furniture_shopping_app/data/model/products_data_model.dart';
 
-class UserDataModel extends Equatable {
-  String id;
-  String email;
-  String name;
-  String? phone;
-  String password;
-  String? governorate;
-  String? city;
-  String? street;
-  String? postalCode;
-  String? imageUrl;
-  List<ProductDataModel>? favorites;
-  List<Map<String, dynamic>>? cartProducts;
-  String? memberSince;
-   UserDataModel({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.password,
-    this.phone,
-    this.city,
-    this.cartProducts,
-    this.favorites,
-    this.street,
-    this.governorate,
-    this.imageUrl,
-    this.memberSince,
-    this.postalCode,
-  });
-
-  @override
-  List<Object?> get props => [
-        name,
-        password,
-        email,
-        city,
-        cartProducts,
-        favorites,
-        memberSince,
-        imageUrl,
-        street,
-        postalCode,
-        phone,
-        id,
-        governorate,
-      ];
+class UserDataModel extends UserData {
+  UserDataModel({
+    required String id,
+    required String name,
+    required String email,
+    required String password,
+    String phone = '',
+    String city = '',
+    List<Map<String, dynamic>> cartProducts = const [],
+    List<ProductDataModel> favorites = const [],
+    String street = '',
+    String governorate = '',
+    String imageUrl = '',
+    required String memberSince,
+    String postalCode = '',
+  }) : super(
+            id: id,
+            name: name,
+            email: email,
+            password: password,
+            phone: phone,
+            city: city,
+            cartProducts: cartProducts,
+            favorites: favorites,
+            street: street,
+            governorate: governorate,
+            imageUrl: imageUrl,
+            memberSince: memberSince,
+            postalCode: postalCode);
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) {
     if (json != null) {
@@ -74,8 +57,8 @@ class UserDataModel extends Equatable {
           email: json['email'],
           password: json['memberSince'],
           memberSince: json['memberSince'],
-          //cartProducts: cartProducts,
-          //favorites: favorites,
+          cartProducts: cartProducts,
+          favorites: favorites,
           city: json['city'],
           governorate: json['governorate'],
           street: json['street'],
@@ -88,20 +71,21 @@ class UserDataModel extends Equatable {
       name: '',
       email: '',
       password: '',
+      memberSince: '',
     );
   }
 
   Map<String, dynamic> toJson() {
     final favorites = this
-        .favorites!
-        .map((product) => (product).toJson())
+        .favorites
+        .map((product) => (product as ProductDataModel).toJson())
         .toList();
 
-    final cartProducts = this.cartProducts!.map((productMap) {
+    final cartProducts = this.cartProducts.map((productMap) {
       return (productMap['product'] as ProductDataModel).toJson();
     }).toList();
-    final json = <String, dynamic>{
-      'id': id,
+    final json = <String,dynamic>{
+       'id': id,
       'email': email,
       'name': name,
       'password': password,
@@ -118,4 +102,87 @@ class UserDataModel extends Equatable {
 
     return json;
   }
+}
+
+
+
+class UserData extends Equatable {
+  final String id;
+  final String email;
+  final String name;
+  final String phone;
+  final String password;
+  final String governorate;
+  final String city;
+  final String street;
+  final String postalCode;
+  final String imageUrl;
+  final List<ProductDataModel> favorites;
+  final List<Map<String, dynamic>> cartProducts;
+  final String memberSince;
+  UserData({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.password,
+    required this.phone,
+    required this.city,
+    required this.cartProducts,
+    required this.favorites,
+    required this.street,
+    required this.governorate,
+    required this.imageUrl,
+    required this.memberSince,
+    required this.postalCode,
+  });
+
+  UserData copyWith({
+    String? id,
+    String? email,
+    String? name,
+    String? phone,
+    String? password,
+    String? governorate,
+    String? city,
+    String? street,
+    String? postalCode,
+    String? imageUrl,
+    List<ProductDataModel>? favorites,
+    List<Map<String, dynamic>>? cartProducts,
+    String? memberSince,
+  }) {
+    return UserData(
+      id: id ?? this.id,
+      email: email ?? this.email,
+      name: name ?? this.name,
+      password: password ?? this.password,
+      phone: phone ?? this.phone,
+      governorate: governorate ?? this.governorate,
+      city: city ?? this.city,
+      street: street ?? this.street,
+      postalCode: postalCode ?? this.postalCode,
+      imageUrl: imageUrl ?? this.imageUrl,
+      favorites: favorites ?? this.favorites,
+      cartProducts: cartProducts ?? this.cartProducts,
+      memberSince: memberSince ?? this.memberSince,
+    );
+  }
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        name,
+        password,
+        email,
+        city,
+        cartProducts,
+        favorites,
+        memberSince,
+        imageUrl,
+        street,
+        postalCode,
+        phone,
+        id,
+        governorate,
+      ];
 }

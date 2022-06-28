@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:furniture_shopping_app/core/constans/strings.dart';
 import 'package:furniture_shopping_app/ui/widget/products_in_favorite.dart';
 
 import '../../widget/sign_button.dart';
-
 
 class FavoriteScreen extends StatefulWidget {
   FavoriteScreen({Key? key}) : super(key: key);
@@ -27,8 +27,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     return Scaffold(
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: SignButton(
-          buttonHight:all/ 23.74 ,
-          buttonWidth:all/3.55 ,
+          buttonHight: all / 23.74,
+          buttonWidth: all / 3.55,
           text: 'Add all to my cart',
           onPressed: () {},
         ),
@@ -37,7 +37,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.pushNamed(context, "myCard");
+                Navigator.pushNamed(context, myCardScreen);
               },
               icon: Icon(
                 size: all / 59.35,
