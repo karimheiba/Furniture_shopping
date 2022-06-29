@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:furniture_shopping_app/business_logic/blocs/auth/auth_bloc.dart';
+import 'package:furniture_shopping_app/business_logic/blocs/products/products_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/strings.dart';
 import 'package:furniture_shopping_app/data/data_services/local_data_sources.dart';
+import 'package:furniture_shopping_app/data/models/products_data_model.dart';
+import 'package:furniture_shopping_app/data/repositories/products_repo.dart';
 import 'package:furniture_shopping_app/ui/screen/boarding.dart';
 import 'package:furniture_shopping_app/ui/screen/home_screen.dart';
 import 'package:furniture_shopping_app/ui/screen/login_screen.dart';
 import 'package:furniture_shopping_app/ui/screen/main_tab_screens/profile_tab.dart';
 import 'package:furniture_shopping_app/ui/screen/my_card.dart';
+import 'package:furniture_shopping_app/ui/screen/product.dart';
 import 'package:furniture_shopping_app/ui/screen/signup_screen.dart';
 import 'package:furniture_shopping_app/ui/screen/subPages/order_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -59,6 +63,10 @@ class AppRoute {
                     BlocProvider.value(
                       value: settings.arguments! as AuthBloc,
                     ),
+                    BlocProvider<ProductsBloc>(
+                      create: ((context) => inj<ProductsBloc>()
+                       ),
+                    )
                   ],
                   child: HomeScreen(),
                 ));
@@ -71,6 +79,11 @@ class AppRoute {
 
       case ordersScreen:
         return MaterialPageRoute(builder: (context) => OrderScreen());
+
+      case productDetailsScreen:
+        final product = settings.arguments as ProductDataModel;
+        return MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(product: product));
     }
   }
 }

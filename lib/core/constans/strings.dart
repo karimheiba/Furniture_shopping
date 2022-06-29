@@ -6,3 +6,4 @@ const String homeScreen = 'home_screen';
 const String myCardScreen = '/my_card_screen';
 const String ordersScreen = '/orders_screen';
 const String profileScreen = '/profile_screen';
+const String productDetailsScreen = '/product_details_screen';

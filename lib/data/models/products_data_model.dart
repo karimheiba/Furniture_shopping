@@ -29,7 +29,7 @@ class ProductDataModel extends Equatable {
     required this.color,
   });
 
- factory ProductDataModel.fromJson(Map<String, dynamic>? json) {
+  factory ProductDataModel.fromJson(Map<String, dynamic>? json) {
     if (json != null) {
       return ProductDataModel(
         id: json['id'],
@@ -39,10 +39,10 @@ class ProductDataModel extends Equatable {
         discount: (json['discount'] as num?)!.toDouble(),
         rate: (json['rate'] as num?)!.toDouble(),
         countInStock: (json['countInStock'] as num?)!.toInt(),
-        category:
-            CategoryDataModel.fromJson(json['category'] as Map<String, dynamic>?),
+        category: CategoryDataModel.fromJson(
+            json['category'] as Map<String, dynamic>?),
         brand: json['brand'],
-        images:   toStringList(!json['images'] as List<dynamic>),
+        images: toStringList(json['images'] as List<dynamic>),
         color: json['color'],
       );
     }
@@ -76,6 +76,7 @@ class ProductDataModel extends Equatable {
       'color': color,
     };
   }
+
   @override
   List<Object?> get props => [
         id,
@@ -91,15 +92,15 @@ class ProductDataModel extends Equatable {
         color,
       ];
 }
-List<String> toStringList(List<dynamic>? list) {
-    if (list != null) {
-      return list.map((imageUrl) {
-        if (imageUrl != null) {
-          return imageUrl.toString();
-        }
-        return '';
-      }).toList();
-    }
-    return <String>[];
-  }
 
+List<String> toStringList(List<dynamic>? list) {
+  if (list != null) {
+    return list.map((imageUrl) {
+      if (imageUrl != null) {
+        return imageUrl.toString();
+      }
+      return '';
+    }).toList();
+  }
+  return <String>[];
+}
