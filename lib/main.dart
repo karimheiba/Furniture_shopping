@@ -4,6 +4,8 @@ import 'package:furniture_shopping_app/core/app_route.dart';
 import 'core/constans/colors.dart';
 import 'core/injection_container.dart' as di;
 
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
       //   "profile": (context) => ProfileScreen(),
       // },
       onGenerateRoute: AppRoute.generateRoute,
+      // home: CongratsScreen(),
 
       title: 'furniture shopping',
       theme: ThemeData(
