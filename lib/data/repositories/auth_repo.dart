@@ -69,9 +69,9 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, Unit>> logOutUser() async {
     try {
-      await RemoteDataSourceImp.instance.LogOut();
+      await RemoteDataSourceImp.instance.logOut();
       await localDataSource.clearCacheUserId();
-     
+
       return const Right(unit);
     } on FirebaseAuthException catch (e) {
       return Left(UnknownFailure(message: e.code));

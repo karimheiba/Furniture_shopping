@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:furniture_shopping_app/business_logic/blocs/products/products_bloc.dart';
 
 import '../../core/constans/colors.dart';
-
 
 class CategoryList extends StatefulWidget {
   @override
@@ -43,6 +44,13 @@ class _CategoryListState extends State<CategoryList> {
                 setState(() {
                   currentIndex = index;
                 });
+                if (index != 0) {
+                  BlocProvider.of<ProductsBloc>(context).add(
+                      GetProductsInCategoryEvent(categoryId: index.toString()));
+                } else {
+                  BlocProvider.of<ProductsBloc>(context)
+                      .add(GetAllProductsEvent());
+                }
               },
               child: Column(
                 children: [

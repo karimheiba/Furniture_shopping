@@ -2,30 +2,23 @@ import 'package:flutter/material.dart';
 
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
-import 'package:furniture_shopping_app/data/models/product_model.dart';
+import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 import 'package:furniture_shopping_app/ui/widget/color_pick.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
-class ProductScreen extends StatefulWidget {
-  
-   ProductScreen({required this.index
-
-  }) ;
-int index;
- List<ProductModel> data=[];
+class ProductDetailsScreen extends StatefulWidget {
+  ProductDetailsScreen({ required this.product});
+  //int index;
+  //List<ProductModel> data = [];
+  ProductDataModel product;
 //  List icon=[];
 
-    
-
-
   @override
-  State<ProductScreen> createState() => _ProductScreenState();
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
-class _ProductScreenState extends State<ProductScreen> {
-
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int counter = 1;
- 
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +27,11 @@ class _ProductScreenState extends State<ProductScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          imageSection(widget.index),
+          imageSection(),
           const SizedBox(
             height: 25,
           ),
-          infoSection(widget.index)
+          infoSection(),
         ],
       ),
     ));
@@ -46,7 +39,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   // this section for product image and color picker
 
-  Stack imageSection( int index) {
+  Stack imageSection() {
     return Stack(
       children: [
         Align(
@@ -55,14 +48,15 @@ class _ProductScreenState extends State<ProductScreen> {
             margin: const EdgeInsets.only(left: 52),
             height: 455,
             width: double.infinity,
-            decoration:  BoxDecoration(
+            decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.only(bottomLeft: Radius.circular(70)),
                 image: DecorationImage(
-                    image: AssetImage("${ProductModel.product[index].imageUrl}"),
-                    fit: BoxFit.cover)
-                    ),
-                  //  child: Image(image: AssetImage(ProductModel.product[index].imageUrl,),fit: BoxFit.cover,),
+                    // image:
+                    //     AssetImage("${ProductModel.product[index].imageUrl}"),
+                    image: NetworkImage(widget.product.images.first),
+                    fit: BoxFit.cover)),
+            //  child: Image(image: AssetImage(ProductModel.product[index].imageUrl,),fit: BoxFit.cover,),
           ),
         ),
         Positioned(
@@ -105,14 +99,15 @@ class _ProductScreenState extends State<ProductScreen> {
 
   //this section for product description
 
-  Padding infoSection(int index) {
+  Padding infoSection() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text(
-            "${ProductModel.product[index].title}",
+          Text(
+            //"${ProductModel.product[index].title}",
+            '${widget.product.name}',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
@@ -121,9 +116,9 @@ class _ProductScreenState extends State<ProductScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(   "\$ ${ProductModel.product[index].price}",
-                
-             
+              Text(
+                // "\$ ${ProductModel.product[index].price}",
+                '\$ ${widget.product.price}',
                 style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
@@ -202,7 +197,8 @@ class _ProductScreenState extends State<ProductScreen> {
                 width: 10,
               ),
               Text(
-                "${ProductModel.product[index].rating}",
+                //"${ProductModel.product[index].rating}",
+                '${widget.product.rate}',
                 style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
@@ -217,25 +213,22 @@ class _ProductScreenState extends State<ProductScreen> {
                       fontWeight: FontWeight.w600,
                       fontFamily: "NunitoSans",
                       color: disabledButton)),
-
-           
             ],
           ),
           SizedBox(
             height: 14,
           ),
           RichText(
-            
-
-              text: TextSpan(
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: "NunitoSans",
-                      color: disabledButton),
-                  text:
-                      ProductModel.product[index].description
-                      )),
+            text: TextSpan(
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: "NunitoSans",
+                  color: disabledButton),
+              //text: ProductModel.product[index].description,
+              text: widget.product.description,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 20.0, bottom: 30),
             child: Row(
@@ -248,13 +241,16 @@ class _ProductScreenState extends State<ProductScreen> {
                   onPressed: () {},
                   child: Icon(Icons.bookmark_border),
                 ),
-                SizedBox(width: 15,),
+                SizedBox(
+                  width: 15,
+                ),
                 Flexible(
                   child: SignButton(
-                    visualDensity: VisualDensity.standard,
-                    buttonHight:MySize.customSize.gitSize(context, 60) ,
-                    buttonWidth:250 ,
-                    text: "Add to cart", onPressed: (){}),
+                      visualDensity: VisualDensity.standard,
+                      buttonHight: MySize.customSize.gitSize(context, 60),
+                      buttonWidth: 250,
+                      text: "Add to cart",
+                      onPressed: () {}),
                 )
               ],
             ),

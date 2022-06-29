@@ -1,18 +1,11 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:furniture_shopping_app/core/constans/colors.dart';
-import 'package:furniture_shopping_app/data/models/product_model.dart';
+import 'package:furniture_shopping_app/core/constans/strings.dart';
+import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 
-import '../screen/product.dart';
-
-
-class PrudactList extends StatelessWidget {
-   PrudactList({Key? key}) : super(key: key);
-
-
+class ProductsList extends StatelessWidget {
+  final List<ProductDataModel> products;
+  const ProductsList({Key? key, required this.products}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +15,6 @@ class PrudactList extends StatelessWidget {
     double all = height + width;
     return Expanded(
       child: GridView.builder(
-        
         shrinkWrap: true,
         padding: EdgeInsets.symmetric(
             horizontal: all / 59.35, vertical: all / 79.13),
@@ -34,15 +26,21 @@ class PrudactList extends StatelessWidget {
           crossAxisSpacing: all / 59.35,
           mainAxisSpacing: all / 79.13,
         ),
-        itemCount: ProductModel.product.length,
+        //itemCount: ProductModel.product.length,
+        itemCount: products.length,
         itemBuilder: (context, index) {
-
           return SizedBox(
             height: all / 4.69,
             width: all / 7.56,
             child: GestureDetector(
-              onTap: (){
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductScreen(index: index)));
+              onTap: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) =>
+                //             ProductDetailsScreen(index: index)));
+                Navigator.pushNamed(context, productDetailsScreen,
+                    arguments: products[index]);
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +51,12 @@ class PrudactList extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                              image: AssetImage(
-                               ProductModel.product[index].imageUrl,
+                              // image: AssetImage(
+                              //   //ProductModel.product[index].imageUrl,
+
+                              // ),
+                              image: NetworkImage(
+                                products[index].images.first,
                               ),
                               fit: BoxFit.fill)),
                       child: Padding(
@@ -68,9 +70,7 @@ class PrudactList extends StatelessWidget {
                               padding: EdgeInsets.all(0),
                               color: Color.fromRGBO(188, 188, 188, 100)
                                   .withOpacity(.8),
-                              onPressed: () {
-                               
-                              },
+                              onPressed: () {},
                               child: Icon(
                                 Icons.shopping_bag,
                                 size: all / 59.35,
@@ -82,7 +82,8 @@ class PrudactList extends StatelessWidget {
                     height: all / 118.7,
                   ),
                   Text(
-                    ProductModel.product[index].title,
+                    //ProductModel.product[index].title,
+                    products[index].name,
                     style: TextStyle(
                         fontSize: all / 84.78,
                         fontWeight: FontWeight.w400,
@@ -92,7 +93,9 @@ class PrudactList extends StatelessWidget {
                   SizedBox(
                     height: all / 197.83,
                   ),
-                  Text("\$ ${ProductModel.product[index].price}",
+                  //Text("\$ ${ProductModel.product[index].price}",
+
+                  Text('\$ ${products[index].price}',
                       style: TextStyle(
                           fontSize: all / 84.78,
                           fontWeight: FontWeight.w700,
