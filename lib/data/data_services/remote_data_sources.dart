@@ -6,9 +6,13 @@ abstract class RemoteDataSource {
   /// Auth Data Source
   Future<UserDataModel> createUser(String email, String password, String name);
   Future<UserCredential> logInUser(String email, String password);
+  Future<void> logOut();
 
   /// User Data Source
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String userId);
+
+  /// Products Data Source
+  Future<QuerySnapshot<Map<String, dynamic>>> getAllProducts();
 }
 
 class RemoteDataSourceImp extends RemoteDataSource {
@@ -58,7 +62,14 @@ class RemoteDataSourceImp extends RemoteDataSource {
     return userData;
   }
 
-  Future<void> LogOut() async {
+  Future<void> logOut() async {
     await auth.signOut();
+  }
+
+  /// Products Data Source
+  @override
+  Future<QuerySnapshot<Map<String, dynamic>>> getAllProducts() {
+    final products = FirebaseFirestore.instance.collection('products').get();
+    return products;
   }
 }
