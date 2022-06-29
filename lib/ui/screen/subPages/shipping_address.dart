@@ -21,6 +21,14 @@ class _ShippingAddreesScreenState extends State<ShippingAddreesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton:FloatingActionButton(
+        backgroundColor: Colors.white,
+      
+        onPressed: () {
+        
+      },
+      child: Icon(Icons.add,color: primary,),
+      ),
         appBar: AppBar(
           leading: IconButton(
               onPressed: () {}, icon: Icon(Icons.arrow_back_ios_new_outlined)),

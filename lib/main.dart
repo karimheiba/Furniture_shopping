@@ -4,6 +4,7 @@ import 'package:furniture_shopping_app/core/app_route.dart';
 import 'package:furniture_shopping_app/ui/screen/subPages/check_out.dart';
 import 'core/constans/colors.dart';
 import 'core/injection_container.dart' as di;
+import 'ui/screen/subPages/congrats_screen.dart';
 import 'ui/screen/subPages/shipping_address.dart';
 
 void main() async {
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
       //   "profile": (context) => ProfileScreen(),
       // },
       onGenerateRoute: AppRoute.generateRoute,
+      // home: CongratsScreen(),
 
       title: 'furniture shopping',
       theme: ThemeData(
