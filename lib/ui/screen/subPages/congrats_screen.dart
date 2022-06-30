@@ -1,10 +1,6 @@
-import 'dart:ui';
 
-import 'package:dartz/dartz.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
@@ -19,6 +15,7 @@ class CongratsScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              
               Text(
                 "SUCCESS!",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
