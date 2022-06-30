@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:furniture_shopping_app/data/models/cart_model.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 
 class UserDataModel extends UserData {
@@ -9,7 +10,7 @@ class UserDataModel extends UserData {
     required String password,
     String phone = '',
     String city = '',
-    List<Map<String, dynamic>> cartProducts = const [],
+    List<CartDataModel> cartProducts = const [],
     List<ProductDataModel> favorites = const [],
     String street = '',
     String governorate = '',
@@ -57,7 +58,8 @@ class UserDataModel extends UserData {
           email: json['email'],
           password: json['memberSince'],
           memberSince: json['memberSince'],
-          cartProducts: cartProducts,
+          //cartProducts: cartProducts,
+          cartProducts:  json['cartProducts'],
           favorites: favorites,
           city: json['city'],
           governorate: json['governorate'],
@@ -81,9 +83,9 @@ class UserDataModel extends UserData {
         .map((product) => (product as ProductDataModel).toJson())
         .toList();
 
-    final cartProducts = this.cartProducts.map((productMap) {
-      return (productMap['product'] as ProductDataModel).toJson();
-    }).toList();
+    // final cartProducts = this.cartProducts.map((productMap) {
+    //   return (productMap['product'] as ProductDataModel).toJson();
+    // }).toList();
     final json = <String,dynamic>{
        'id': id,
       'email': email,
@@ -118,7 +120,7 @@ class UserData extends Equatable {
   final String postalCode;
   final String imageUrl;
   final List<ProductDataModel> favorites;
-  final List<Map<String, dynamic>> cartProducts;
+  final List<dynamic> cartProducts;
   final String memberSince;
   const UserData({
     required this.id,
@@ -148,7 +150,7 @@ class UserData extends Equatable {
     String? postalCode,
     String? imageUrl,
     List<ProductDataModel>? favorites,
-    List<Map<String, dynamic>>? cartProducts,
+    List<dynamic>? cartProducts,
     String? memberSince,
   }) {
     return UserData(

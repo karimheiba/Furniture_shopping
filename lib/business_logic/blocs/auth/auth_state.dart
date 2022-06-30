@@ -22,14 +22,20 @@ class AuthError extends AuthState {
   List<Object> get props => [message];
 }
 
-class AuthGetUserData extends AuthState {
-  final UserDataModel userData;
+class SuccessLogOutState extends AuthState {
+  final String message;
 
-  const AuthGetUserData({required this.userData});
+  const SuccessLogOutState({required this.message});
 
   @override
-  List<Object> get props => [userData];
+  List<Object> get props => [message];
 }
 
+class ErrorLogOutState extends AuthState {
+    final String message;
 
+  const ErrorLogOutState({required this.message});
 
+  @override
+  List<Object> get props => [message];
+}

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/strings.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
+
+import '../../business_logic/blocs/bloc/user_bloc.dart';
 
 class ProductsList extends StatelessWidget {
   final List<ProductDataModel> products;
@@ -70,7 +73,12 @@ class ProductsList extends StatelessWidget {
                               padding: EdgeInsets.all(0),
                               color: Color.fromRGBO(188, 188, 188, 100)
                                   .withOpacity(.8),
-                              onPressed: () {},
+                              onPressed: () {
+                                BlocProvider.of<UserBloc>(context).add(
+                                    AddProductToCartEvent(
+                                        product: products[index],
+                                        ));
+                              },
                               child: Icon(
                                 Icons.shopping_bag,
                                 size: all / 59.35,

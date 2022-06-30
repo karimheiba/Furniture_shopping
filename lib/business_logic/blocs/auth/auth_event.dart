@@ -34,6 +34,4 @@ class LogInUserAuthEvent extends AuthEvent {
       ];
 }
 
-
-
 class LogOutAuthEvent extends AuthEvent{}

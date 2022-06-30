@@ -19,19 +19,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(BodyHomeLoaded(body: event.screen));
       } else if (event is HomeScreenEvent) {
         emit(HomeLoading());
-        final userId = localDataSource.getCachedUserId();
-        if (userId != null) {
-          final userData = await authRepo.getUserData(userId);
-          userData.fold((failure) => print('no user'), (user) {
-            print(userId);
-            return emit(HomeLoaded(user: user));
-          });
-        }
-      } else if (event is LogOutHomeEvent) {
-        await authRepo.logOutUser().then((value) => value.fold(
-            (failure) => emit(ErrorLogOutState(message: failure.message)),
-            (unit) => emit(SuccessLogOutState(message: 'See You Again!'))));
-      }
+        emit(HomeLoaded());
+      } 
     });
   }
 }

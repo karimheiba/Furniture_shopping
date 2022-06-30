@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/colors.dart';
+import 'package:furniture_shopping_app/core/injection_container.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 import 'package:furniture_shopping_app/data/repositories/products_repo.dart';
@@ -12,10 +13,8 @@ import '../../../business_logic/blocs/products/products_bloc.dart';
 class HomeScreenTab extends StatelessWidget {
   HomeScreenTab({Key? key}) : super(key: key);
 
-
-
   final searchController = TextEditingController();
-  List<ProductDataModel>? searchedProductsList;
+  List<ProductDataModel> searchedProductsList = [];
   List<ProductDataModel>? productsList;
 
   @override
@@ -25,21 +24,13 @@ class HomeScreenTab extends StatelessWidget {
     double height = size.height;
     double all = height + width;
     return BlocProvider(
-      create: (_) => ProductsBloc(productsRepo: ProductsRepoImpl())
+      create: (_) => inj<ProductsBloc>()
         ..add(GetAllProductsEvent()),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          // leading: IconButton(
-          //     onPressed: () {},
-          //     icon: Icon(
-          //       Icons.search,
-          //       size: all / 49.45,
-          //       color: textSecondary,
-          //     )),
-          //leading: _buildAppBarActions(),
           leading: BlocBuilder<ProductsBloc, ProductsState>(
             builder: (context, state) {
               if (state is IsSearchedProductState) {
@@ -64,7 +55,6 @@ class HomeScreenTab extends StatelessWidget {
             },
           ),
           toolbarHeight: all / 14.84,
-
           centerTitle: true,
           title: BlocBuilder<ProductsBloc, ProductsState>(
               builder: (context, state) {
@@ -100,7 +90,6 @@ class HomeScreenTab extends StatelessWidget {
               ],
             );
           }),
-
           actions: [
             IconButton(
                 onPressed: () {},
@@ -137,12 +126,12 @@ class HomeScreenTab extends StatelessWidget {
                 } else if (state is SearchedProductsLoaded) {
                   searchedProductsList = state.products;
                   return ProductsList(
-                    products: searchedProductsList!,
+                    products: searchedProductsList,
                   );
                 } else if (state is IsSearchedProductState) {
                   if (state.isSearched) {
                     return ProductsList(
-                      products: searchedProductsList ?? <ProductDataModel>[],
+                      products: searchedProductsList,
                     );
                   } else {
                     return ProductsList(

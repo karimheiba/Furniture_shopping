@@ -22,10 +22,8 @@ class BodyHomeLoaded extends HomeState {
 }
 
 class HomeLoaded extends HomeState {
-final UserData user;
-  HomeLoaded({required this.user});
-   @override
-  List<Object> get props => [user];
+
+  HomeLoaded();
 }
 
 class GetUserState extends HomeState {
@@ -39,19 +37,4 @@ class GetUserState extends HomeState {
 
 class HomeScreenState extends HomeState{}
 
-class SuccessLogOutState extends HomeState {
-  final String message;
 
-  const SuccessLogOutState({required this.message});
-  
-  @override
-  List<Object> get props => [message];
-}
-class ErrorLogOutState extends HomeState {
-  final String message;
-
-  const ErrorLogOutState({required this.message});
-  
-  @override
-  List<Object> get props => [message];
-}

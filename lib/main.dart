@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/core/app_route.dart';
 import 'core/constans/colors.dart';
 import 'core/injection_container.dart' as di;
-import 'ui/screen/subPages/congrats_screen.dart';
-import 'ui/screen/subPages/setting_screen.dart';
 
 
 
