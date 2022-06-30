@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/strings.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
-
 import 'package:furniture_shopping_app/ui/widget/custom_text_formfield.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
-
 import '../../business_logic/blocs/auth/auth_bloc.dart';
 import '../../core/widgets/custom_snack_bar.dart';
 

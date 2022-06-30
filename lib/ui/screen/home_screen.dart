@@ -8,6 +8,7 @@ import 'package:furniture_shopping_app/ui/screen/main_tab_screens/home_tab_scree
 import 'package:furniture_shopping_app/ui/screen/main_tab_screens/notification_tab.dart';
 import 'package:furniture_shopping_app/ui/screen/main_tab_screens/profile_tab.dart';
 
+import '../../business_logic/blocs/auth/auth_bloc.dart';
 import '../../business_logic/blocs/home/home_bloc.dart';
 import '../../core/constans/colors.dart';
 import '../../core/widgets/custom_snack_bar.dart';
@@ -70,7 +71,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ],
           ),
-          body: BlocConsumer<HomeBloc, HomeState>(
+          body: BlocListener<AuthBloc, AuthState>(
             listener: (contex, state) {
               if (state is SuccessLogOutState) {
                 SnackBarMessage.showSuccessMessage(
@@ -81,8 +82,7 @@ class HomeScreen extends StatelessWidget {
                 SnackBarMessage.showSuccessMessage(
                     message: state.message, context: context);
               }
-            },
-            builder: (context, state) {
+            },child: BlocBuilder<HomeBloc,HomeState>(builder: (context, state) {
               if (state is HomeLoading) {
                 return const LoadingWidget();
               } else if (state is HomeLoaded) {
@@ -91,7 +91,8 @@ class HomeScreen extends StatelessWidget {
                 return screens[currentIndex];
               }
               return const LoadingWidget();
-            },
+            },),
+        
           ),
         );
       },

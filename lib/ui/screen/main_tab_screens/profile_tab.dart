@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:furniture_shopping_app/business_logic/blocs/auth/auth_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
 import 'package:furniture_shopping_app/core/injection_container.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
+import '../../../business_logic/blocs/bloc/user_bloc.dart';
 import '../../../business_logic/blocs/home/home_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -11,8 +13,8 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HomeBloc>(
-      create: (context) => inj<HomeBloc>()..add(HomeScreenEvent()),
+    return BlocProvider<UserBloc>(
+      create: (context) => inj<UserBloc>()..add(GetUserDataEvent()),
       child: Scaffold(
         appBar: AppBar(
           iconTheme: IconThemeData(
@@ -36,17 +38,17 @@ class ProfileScreen extends StatelessWidget {
             IconButton(
                 splashRadius: 17,
                 onPressed: () {
-                  context.read<HomeBloc>().add(LogOutHomeEvent());
+                  context.read<AuthBloc>().add(LogOutAuthEvent());
                 },
                 icon: const Icon(Icons.follow_the_signs_rounded))
           ],
         ),
-        body: BlocBuilder<HomeBloc, HomeState>(
+        body: BlocBuilder<UserBloc, UserState>(
           builder: (context, state) {
-            if (state is HomeLoading) {
+            if (state is UserDataLoading) {
               return const LoadingWidget();
             }
-            if (state is HomeLoaded) {
+            if (state is UserDataLoaded) {
               final user = state.user;
               return Padding(
                 padding: EdgeInsets.all(MySize.customSize.gitSize(context, 20)),
@@ -69,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                //"Bruno Pham",
+                                // "Bruno Pham",
                                 user.name,
                                 style: TextStyle(
                                     fontSize:
@@ -81,7 +83,7 @@ class ProfileScreen extends StatelessWidget {
                                 height: MySize.customSize.gitSize(context, 8),
                               ),
                               Text(
-                                  //"bruno203@gmail.com",
+                                  // "bruno203@gmail.com",
                                   user.email,
                                   style: TextStyle(
                                       fontSize: MySize.customSize

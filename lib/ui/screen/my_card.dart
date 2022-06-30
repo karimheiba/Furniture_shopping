@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
+import 'package:furniture_shopping_app/core/widgets/custom_snack_bar.dart';
+import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
+
+import '../../business_logic/blocs/bloc/user_bloc.dart';
 
 class MyCard extends StatelessWidget {
   const MyCard({Key? key}) : super(key: key);
@@ -32,8 +37,33 @@ class MyCard extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [],
+      body: BlocBuilder<UserBloc, UserState>(
+        builder: (context, state) {
+          if (state is UserDataLoading) {
+            return const LoadingWidget();
+          }
+          if (state is Error) {
+            return Column(
+              children: [Text(state.message)],
+            );
+          }
+          if (state is UserCartLoaded) {
+            return Container(
+              color: Colors.blue,
+              height: 500,
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Text(state.cartProducts.toString()),
+                ],
+              ),
+            );
+          }
+          return Container(
+            color: Colors.red,
+            height: 120,
+          );
+        },
       ),
     );
   }

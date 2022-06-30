@@ -5,16 +5,16 @@ import 'package:furniture_shopping_app/business_logic/blocs/products/products_bl
 import 'package:furniture_shopping_app/core/constans/strings.dart';
 import 'package:furniture_shopping_app/data/data_services/local_data_sources.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
-import 'package:furniture_shopping_app/data/repositories/products_repo.dart';
 import 'package:furniture_shopping_app/ui/screen/boarding.dart';
 import 'package:furniture_shopping_app/ui/screen/home_screen.dart';
 import 'package:furniture_shopping_app/ui/screen/login_screen.dart';
 import 'package:furniture_shopping_app/ui/screen/main_tab_screens/profile_tab.dart';
 import 'package:furniture_shopping_app/ui/screen/my_card.dart';
-import 'package:furniture_shopping_app/ui/screen/product.dart';
+import 'package:furniture_shopping_app/ui/screen/product_details_screen.dart';
 import 'package:furniture_shopping_app/ui/screen/signup_screen.dart';
 import 'package:furniture_shopping_app/ui/screen/subPages/order_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../business_logic/blocs/bloc/user_bloc.dart';
 import '../business_logic/blocs/home/home_bloc.dart';
 import 'injection_container.dart ';
 
@@ -34,8 +34,12 @@ class AppRoute {
                           inj<HomeBloc>()..add(HomeScreenEvent()),
                     ),
                     // BlocProvider.value(
-                    //   value: settings.arguments! as AuthBloc,
+                    //   value: settings.arguments as AuthBloc,
                     // ),
+                    BlocProvider<AuthBloc>(
+                        create: (context) => inj<AuthBloc>()),
+                        BlocProvider<UserBloc>(
+                        create: (context) => inj<UserBloc>()..add(GetAllProductsInCartEvent())),
                   ],
                   child: HomeScreen(),
                 ));
@@ -60,19 +64,25 @@ class AppRoute {
                       create: (context) =>
                           inj<HomeBloc>()..add(HomeScreenEvent()),
                     ),
-                    BlocProvider.value(
-                      value: settings.arguments! as AuthBloc,
-                    ),
                     BlocProvider<ProductsBloc>(
-                      create: ((context) => inj<ProductsBloc>()
-                       ),
+                      create: ((context) => inj<ProductsBloc>()),
+                    ),
+                    BlocProvider.value(
+                      value: settings.arguments as AuthBloc,
+                    ),
+                    BlocProvider<UserBloc>(
+                      create: ((context) => inj<UserBloc>()..add(GetAllProductsInCartEvent())),
                     )
                   ],
                   child: HomeScreen(),
                 ));
 
       case myCardScreen:
-        return MaterialPageRoute(builder: (context) => const MyCard());
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider.value(
+                  value: settings.arguments as UserBloc,
+                  child: MyCard(),
+                ));
 
       case profileScreen:
         return MaterialPageRoute(builder: (context) => const ProfileScreen());

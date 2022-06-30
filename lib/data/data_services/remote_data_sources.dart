@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:furniture_shopping_app/data/models/cart_model.dart';
+import '../models/products_data_model.dart';
 import '../models/user_data_model.dart';
 
 abstract class RemoteDataSource {
@@ -10,6 +12,19 @@ abstract class RemoteDataSource {
 
   /// User Data Source
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String userId);
+
+  Future<void> updateFavorites(
+    String userId,
+    List<ProductDataModel> favorites,
+  );
+  Future<void> addProductsToCart(
+    String userId,
+    List<Map<String, dynamic>> cartProducts,
+  );
+  Future<void> updateCartProducts(
+    String userId,
+    List<Map<String, dynamic>> cartProducts,
+  );
 
   /// Products Data Source
   Future<QuerySnapshot<Map<String, dynamic>>> getAllProducts();
@@ -54,6 +69,12 @@ class RemoteDataSourceImp extends RemoteDataSource {
     return user;
   }
 
+  Future<void> logOut() async {
+    await auth.signOut();
+  }
+
+  /// User Data Source
+
   @override
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(
       String userId) async {
@@ -62,8 +83,30 @@ class RemoteDataSourceImp extends RemoteDataSource {
     return userData;
   }
 
-  Future<void> logOut() async {
-    await auth.signOut();
+  @override
+  Future<void> updateCartProducts(
+      String userId, List<Map<String, dynamic>> cartProducts) async {
+    final newCart = cartProducts.map((productMap) {
+      final product = (productMap['product'] as ProductDataModel).toJson();
+      final count = productMap['count'];
+      return {
+        'product': product,
+        'count': count,
+      };
+    }).toList();
+    await FirebaseFirestore.instance.collection('users').doc(userId).update({
+      'cartProducts': newCart,
+    });
+  }
+
+  @override
+  Future<void> updateFavorites(
+      String userId, List<ProductDataModel> favorites) async {
+    final newFavorites =
+        favorites.map((productMap) => productMap.toJson()).toList();
+    await FirebaseFirestore.instance.collection('users').doc(userId).update({
+      'favorites':  newFavorites,
+    });
   }
 
   /// Products Data Source
@@ -72,4 +115,22 @@ class RemoteDataSourceImp extends RemoteDataSource {
     final products = FirebaseFirestore.instance.collection('products').get();
     return products;
   }
+
+  @override
+  Future<void> addProductsToCart(
+      String userId, List<Map<String, dynamic>> cartProducts) async {
+    final newCart = cartProducts.map((productMap) {
+      final product = (productMap['product'] as ProductDataModel).toJson();
+      final count = productMap['count'];
+      return {
+        'product': product,
+        'count': count,
+      };
+    }).toList();
+    await FirebaseFirestore.instance.collection('users').doc(userId).update({
+      'cartProducts': FieldValue.arrayUnion(newCart),
+    });
+  }
+
+ 
 }
