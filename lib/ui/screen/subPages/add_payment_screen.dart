@@ -43,12 +43,14 @@ class AddPaymentScreenState extends State<AddPaymentScreen> {
     return 
  
        Scaffold(
+        appBar: AppBar(title: Text("Payment Method"),
+        leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back_ios_new)),),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Column(
             children: <Widget>[
               const SizedBox(
-                height: 30,
+                height: 10,
               ),
 
               CreditCardWidget(
@@ -140,7 +142,7 @@ floatingLabelBehavior: FloatingLabelBehavior.always,
                      
                         onCreditCardModelChange: onCreditCardModelChange,
                       ),
-                      const SizedBox(height: 25,),
+                      const SizedBox(height: 35,),
                   
                    Padding(
                      padding: const EdgeInsets.symmetric(vertical:40.0),
