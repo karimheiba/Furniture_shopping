@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/core/app_route.dart';
 import 'core/constans/colors.dart';
 import 'core/injection_container.dart' as di;
+import 'ui/screen/subPages/add_payment_screen.dart';
 
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await di.init();
+  // await Firebase.initializeApp();
+  // await di.init();
   runApp(const MyApp());
 }
 
@@ -32,8 +33,8 @@ class MyApp extends StatelessWidget {
       //   "order": (context) => OrderScreen(),
       //   "profile": (context) => ProfileScreen(),
       // },
-      onGenerateRoute: AppRoute.generateRoute,
-      // home: SettingScreen(),
+      // onGenerateRoute: AppRoute.generateRoute,
+      home: AddPaymentScreen(),
 
       title: 'furniture shopping',
       theme: ThemeData(
