@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:furniture_shopping_app/business_logic/blocs/bloc/user_bloc.dart';
 
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
+import 'package:furniture_shopping_app/core/widgets/custom_snack_bar.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 import 'package:furniture_shopping_app/ui/widget/color_pick.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  ProductDetailsScreen({ required this.product});
-  //int index;
-  //List<ProductModel> data = [];
+  ProductDetailsScreen({required this.product});
   ProductDataModel product;
-//  List icon=[];
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -99,163 +99,182 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   //this section for product description
 
-  Padding infoSection() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            //"${ProductModel.product[index].title}",
-            '${widget.product.name}',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                // "\$ ${ProductModel.product[index].price}",
-                '\$ ${widget.product.price}',
-                style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: "NunitoSans-Bold",
-                    color: primary),
-              ),
-              Row(
-                children: [
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    height: 30,
-                    minWidth: 30,
-                    color: Color(0xffE0E0E0),
-                    padding: EdgeInsets.all(0),
-                    onPressed: () {
-                      setState(() {
-                        counter++;
-                      });
-                    },
-                    child: Icon(
-                      Icons.add,
-                      size: 28,
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "${counter}",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: "NunitoSans",
-                        color: primary),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  MaterialButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    height: 30,
-                    minWidth: 30,
-                    color: Color(0xffE0E0E0),
-                    padding: EdgeInsets.all(0),
-                    onPressed: () {
-                      setState(() {
-                        if (counter > 1) {
-                          counter--;
-                        } else {
-                          return null;
-                        }
-                      });
-                    },
-                    child: Icon(
-                      Icons.remove,
-                      size: 28,
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Icon(
-                Icons.star,
-                color: Color(0xffF2C94C),
-                size: 24,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                //"${ProductModel.product[index].rating}",
-                '${widget.product.rate}',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: "NunitoSans-Bold"),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Text("( 50 reviews)",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: "NunitoSans",
-                      color: disabledButton)),
-            ],
-          ),
-          SizedBox(
-            height: 14,
-          ),
-          RichText(
-            text: TextSpan(
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: "NunitoSans",
-                  color: disabledButton),
-              //text: ProductModel.product[index].description,
-              text: widget.product.description,
+  Widget infoSection() {
+    return BlocListener<UserBloc, UserState>(
+      listener: (context, state) {
+        if (state is UserFavoritesState) {
+          if (state.isFavorite) {
+            SnackBarMessage.showSuccessMessage(
+                message: 'Added To Favorite', context: context);
+          }
+        }
+        if (state is UserCartState) {
+          if (state.isInCart) {
+            SnackBarMessage.showSuccessMessage(
+                message: 'Added To Cart', context: context);
+          }
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              //"${ProductModel.product[index].title}",
+              '${widget.product.name}',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0, bottom: 30),
-            child: Row(
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MaterialButton(
-                  height: 60,
-                  minWidth: 60,
-                  color: secondaryButtonBG,
-                  padding: EdgeInsets.all(0),
-                  onPressed: () {},
-                  child: Icon(Icons.bookmark_border),
+                Text(
+                  // "$ ${ProductModel.product[index].price}",
+                  '\$ ${widget.product.price}',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "NunitoSans-Bold",
+                      color: primary),
                 ),
-                SizedBox(
-                  width: 15,
-                ),
-                Flexible(
-                  child: SignButton(
-                      visualDensity: VisualDensity.standard,
-                      buttonHight: MySize.customSize.gitSize(context, 60),
-                      buttonWidth: 250,
-                      text: "Add to cart",
-                      onPressed: () {}),
+                Row(
+                  children: [
+                    MaterialButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      height: 30,
+                      minWidth: 30,
+                      color: Color(0xffE0E0E0),
+                      padding: EdgeInsets.all(0),
+                      onPressed: () {
+                        setState(() {
+                          counter++;
+                        });
+                      },
+                      child: Icon(
+                        Icons.add,
+                        size: 28,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "",
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: "NunitoSans",
+                          color: primary),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    MaterialButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      height: 30,
+                      minWidth: 30,
+                      color: Color(0xffE0E0E0),
+                      padding: EdgeInsets.all(0),
+                      onPressed: () {
+                        setState(() {
+                          if (counter > 1) {
+                            counter--;
+                          } else {
+                            return null;
+                          }
+                        });
+                      },
+                      child: Icon(
+                        Icons.remove,
+                        size: 28,
+                      ),
+                    )
+                  ],
                 )
               ],
             ),
-          )
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Icon(
+                  Icons.star,
+                  color: Color(0xffF2C94C),
+                  size: 24,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  //"${ProductModel.product[index].rating}",
+                  '${widget.product.rate}',
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "NunitoSans-Bold"),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Text("( 50 reviews)",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: "NunitoSans",
+                        color: disabledButton)),
+              ],
+            ),
+            SizedBox(
+              height: 14,
+            ),
+            RichText(
+              text: TextSpan(
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "NunitoSans",
+                    color: disabledButton),
+                //text: ProductModel.product[index].description,
+                text: widget.product.description,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0, bottom: 30),
+              child: Row(
+                children: [
+                  MaterialButton(
+                    height: 60,
+                    minWidth: 60,
+                    color: secondaryButtonBG,
+                    padding: EdgeInsets.all(0),
+                    onPressed: () => BlocProvider.of<UserBloc>(context).add(
+                        AddProductToFavoriteEvent(
+                            favoriteProduct: widget.product)),
+                    child: Icon(Icons.bookmark_border),
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Flexible(
+                    child: SignButton(
+                        visualDensity: VisualDensity.standard,
+                        buttonHight: MySize.customSize.gitSize(context, 60),
+                        buttonWidth: 250,
+                        text: "Add to cart",
+                        onPressed: () => context.read<UserBloc>().add(
+                            AddProductToCartEvent(product: widget.product))),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

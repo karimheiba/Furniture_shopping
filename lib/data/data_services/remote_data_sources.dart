@@ -17,14 +17,29 @@ abstract class RemoteDataSource {
     String userId,
     List<ProductDataModel> favorites,
   );
+
+  ///Cart Sources
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getProductsInCart(String userId);
   Future<void> addProductsToCart(
     String userId,
-    List<Map<String, dynamic>> cartProducts,
+    CartDataModel cartProducts,
   );
   Future<void> updateCartProducts(
     String userId,
     List<Map<String, dynamic>> cartProducts,
   );
+
+  Future<void> removeProductFromCart(String userId, String productId);
+
+  ///Favorites Sources
+  Future<QuerySnapshot<Map<String, dynamic>>> getProductsInFavorites(
+      String userId);
+  Future<void> addProductsToFavorite(
+    String userId,
+    ProductDataModel favoriteProducts,
+  );
+  Future<void> removeProductFromFavorite(String userId, String productId);
 
   /// Products Data Source
   Future<QuerySnapshot<Map<String, dynamic>>> getAllProducts();
@@ -105,7 +120,7 @@ class RemoteDataSourceImp extends RemoteDataSource {
     final newFavorites =
         favorites.map((productMap) => productMap.toJson()).toList();
     await FirebaseFirestore.instance.collection('users').doc(userId).update({
-      'favorites':  newFavorites,
+      'favorites': newFavorites,
     });
   }
 
@@ -117,20 +132,67 @@ class RemoteDataSourceImp extends RemoteDataSource {
   }
 
   @override
-  Future<void> addProductsToCart(
-      String userId, List<Map<String, dynamic>> cartProducts) async {
-    final newCart = cartProducts.map((productMap) {
-      final product = (productMap['product'] as ProductDataModel).toJson();
-      final count = productMap['count'];
-      return {
-        'product': product,
-        'count': count,
-      };
-    }).toList();
-    await FirebaseFirestore.instance.collection('users').doc(userId).update({
-      'cartProducts': FieldValue.arrayUnion(newCart),
-    });
+  Future<QuerySnapshot<Map<String, dynamic>>> getProductsInCart(
+      String userId) async {
+    final cartData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('cartProducts')
+        .get();
+    return cartData;
   }
 
- 
+  @override
+  Future<void> addProductsToCart(
+      String userId, CartDataModel cartProducts) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('cartProducts')
+        .doc(cartProducts.product.id)
+        .set(cartProducts.toJson());
+  }
+
+  @override
+  Future<void> removeProductFromCart(String userId, String productId) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('cartProducts')
+        .doc(productId)
+        .delete();
+  }
+
+  @override
+  Future<void> addProductsToFavorite(
+      String userId, ProductDataModel favoriteProducts) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('favoriteProducts')
+        .doc(favoriteProducts.id)
+        .set(favoriteProducts.toJson());
+  }
+
+  @override
+  Future<QuerySnapshot<Map<String, dynamic>>> getProductsInFavorites(
+      String userId) async {
+    final favoritesData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('favoriteProducts')
+        .get();
+    return favoritesData;
+  }
+
+  @override
+  Future<void> removeProductFromFavorite(
+      String userId, String productId) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('favoriteProducts')
+        .doc(productId)
+        .delete();
+  }
 }

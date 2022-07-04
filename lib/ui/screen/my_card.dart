@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
-import 'package:furniture_shopping_app/core/widgets/custom_snack_bar.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
+import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 
 import '../../business_logic/blocs/bloc/user_bloc.dart';
@@ -39,7 +39,7 @@ class MyCard extends StatelessWidget {
       ),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
-          if (state is UserDataLoading) {
+          if (state is UserCartLoading) {
             return const LoadingWidget();
           }
           if (state is Error) {
@@ -48,16 +48,27 @@ class MyCard extends StatelessWidget {
             );
           }
           if (state is UserCartLoaded) {
-            return Container(
-              color: Colors.blue,
-              height: 500,
-              width: double.infinity,
-              child: Column(
-                children: [
-                  Text(state.cartProducts.toString()),
-                ],
-              ),
-            );
+            final list = state.cartProducts;
+            return ListView.builder(
+                itemCount: list.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('${list[index].product.name}'),
+                      ElevatedButton(
+                          onPressed: () {
+                            context.read<UserBloc>().add(
+                                RemoveProductFromCartEvent(
+                                    product: list[index].product));
+                            context
+                                .read<UserBloc>()
+                                .add(GetAllProductsInCartEvent());
+                          },
+                          child: Text('Delete'))
+                    ],
+                  );
+                });
           }
           return Container(
             color: Colors.red,

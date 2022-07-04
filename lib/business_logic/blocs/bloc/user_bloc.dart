@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:furniture_shopping_app/data/models/cart_model.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
@@ -38,35 +39,47 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       if (event is AddProductToCartEvent) {
         final productsfromMap = await userRepo.addProductToCart(event.product);
         productsfromMap.fold((failure) {
-          emit(const UserCartState(isInCart: false));
-          //emit(const UserCartLoaded(products: <Map<String, dynamic>>[]));
+          emit(const Error(message: 'Can\'t Add Now Please Try Later'));
         }, (productsMap) {
-         // final products = productsMap.first['product'];
           emit(const UserCartState(isInCart: true));
-          emit(UserCartLoaded(cartProducts: productsMap));
+          emit(const UserCartState(isInCart: false));
         });
       }
 
       /// Remove Product From Cart Event
       if (event is RemoveProductFromCartEvent) {
-        final products = await userRepo.removeProductFromCart(
-            event.cartProducts, event.productId);
-        products.fold((failure) {
-          emit(const UserCartState(isInCart: false));
-          // emit(const UserCartLoaded(products: <Map<String, dynamic>>[]));
-        }, (product) {
-         // final oneProduct = product.first['product'];
-          emit(const UserCartState(isInCart: false));
-          emit(UserCartLoaded(cartProducts: product));
+        emit(UserCartLoading());
+        final cart = await userRepo.removeProductFromCart(event.product);
+        cart.fold((failure) => emit(Error(message: failure.message)),
+            (removed) => print('User Bloc Message : deleted'));
+      }
+
+      /// Get All Products In The Cart
+      if (event is GetAllProductsInCartEvent) {
+        emit(UserCartLoading());
+        final cart = await userRepo.getAllProductsInCart();
+        cart.fold((failure) => emit(Error(message: failure.message)),
+            (products) => emit(UserCartLoaded(cartProducts: products)));
+      }
+
+      /// Add Product To Favorite Event
+      if (event is AddProductToFavoriteEvent) {
+        final productsfromMap =
+            await userRepo.addProductToFavorites(event.favoriteProduct);
+        productsfromMap.fold((failure) {
+          emit(const Error(message: 'Can\'t Add Now Please Try Later'));
+        }, (productsMap) {
+          event.isFavorite = true;
+          emit(UserFavoritesState(isFavorite: event.isFavorite));
         });
       }
-      // if (event is GetAllProductsInCartEvent) {
-      //   emit(UserCartLoading());
-      //   final userId = localDataSource.getCachedUserId();
-      //   final products = await userRepo.getAllProductsInCart(userId);
-      //   products.fold((l) => emit(Error(message: l.message)),
-      //       (r) => emit(UserCartLoaded(cartProducts: r)));
-      // }
+
+      if (event is GetAllProductsInFavoriteEvent) {
+        emit(UserFavoriteLoading());
+        final favoriteProducts = await userRepo.getAllProductsInFavorite();
+        favoriteProducts.fold((l) => emit(Error(message: l.message)),
+            (r) => emit(UserFavoriteLoaded(products: r)));
+      }
     });
   }
 }

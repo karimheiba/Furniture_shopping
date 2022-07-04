@@ -88,8 +88,11 @@ class LoginScreen extends StatelessWidget {
                 if (state is AuthSuccess) {
                   SnackBarMessage.showSuccessMessage(
                       message: 'Success Login User', context: context);
-                  Navigator.pushNamed(context, homeScreen,
-                      arguments: context.read<AuthBloc>());
+                  Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      homeScreen,
+                      arguments: context.read<AuthBloc>(),
+                      (route) => false);
                 } else if (state is AuthError) {
                   SnackBarMessage.showErrorMessage(
                       message: state.message, context: context);

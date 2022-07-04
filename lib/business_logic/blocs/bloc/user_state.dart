@@ -39,7 +39,7 @@ class UserCartState extends UserState {
 class UserCartLoading extends UserState {}
 
 class UserCartLoaded extends UserState {
-  final List<Map<String,dynamic>> cartProducts;
+  final List<CartDataModel> cartProducts;
 
   const UserCartLoaded({required this.cartProducts});
   @override
@@ -53,3 +53,14 @@ class Error extends UserState {
   @override
   List<Object> get props => [message];
 }
+
+class UserFavoriteLoading extends UserState {}
+
+class UserFavoriteLoaded extends UserState {
+  final List<ProductDataModel> products;
+
+ const  UserFavoriteLoaded({required this.products});
+ @override
+  List<Object> get props => [products];
+}
+

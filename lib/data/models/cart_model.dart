@@ -5,14 +5,15 @@ class CartDataModel {
   ProductDataModel product;
 
   CartDataModel({required this.count, required this.product});
+
   factory CartDataModel.fromJson(Map<String, dynamic> json) {
-    return CartDataModel(count: json['count'], product: json['product']);
+    return CartDataModel(count: json['count'], product: ProductDataModel.fromJson(json['product']));
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{
       'count': count,
-      'product': product,
+      'product': product.toJson(),
     };
     return data;
   }
