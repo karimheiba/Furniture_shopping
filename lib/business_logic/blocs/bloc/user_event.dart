@@ -8,14 +8,16 @@ abstract class UserEvent extends Equatable {
 }
 
 class GetUserDataEvent extends UserEvent {}
-class GetAllProductsInCartEvent extends UserEvent{}
+
+class GetAllProductsInFavoriteEvent extends UserEvent {}
 
 class AddProductToFavoriteEvent extends UserEvent {
   final ProductDataModel favoriteProduct;
-
-  const AddProductToFavoriteEvent({required this.favoriteProduct});
+   bool isFavorite = false;
+   AddProductToFavoriteEvent(
+      {required this.favoriteProduct});
   @override
-  List<Object> get props => [favoriteProduct];
+  List<Object> get props => [favoriteProduct,isFavorite];
 }
 
 class RemoveProductToFavoriteEvent extends UserEvent {
@@ -26,21 +28,20 @@ class RemoveProductToFavoriteEvent extends UserEvent {
   List<Object> get props => [favoriteProduct];
 }
 
+class GetAllProductsInCartEvent extends UserEvent {}
+
 class AddProductToCartEvent extends UserEvent {
-  //final List<Map<String, dynamic>> cartProducts;
   final ProductDataModel product;
 
-  const AddProductToCartEvent(
-      {required this.product});
+  const AddProductToCartEvent({required this.product});
   @override
   List<Object> get props => [product];
 }
 
 class RemoveProductFromCartEvent extends UserEvent {
-  final List<Map<String, dynamic>> cartProducts;
-  final String productId;
+  final ProductDataModel product;
 
-  const RemoveProductFromCartEvent({required this.cartProducts,required this.productId});
+  const RemoveProductFromCartEvent({required this.product});
   @override
-  List<Object> get props => [cartProducts,productId];
+  List<Object> get props => [product];
 }

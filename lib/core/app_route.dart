@@ -38,8 +38,9 @@ class AppRoute {
                     // ),
                     BlocProvider<AuthBloc>(
                         create: (context) => inj<AuthBloc>()),
-                        BlocProvider<UserBloc>(
-                        create: (context) => inj<UserBloc>()..add(GetAllProductsInCartEvent())),
+                    BlocProvider<UserBloc>(
+                        create: (context) =>
+                            inj<UserBloc>()..add(GetAllProductsInCartEvent())),
                   ],
                   child: HomeScreen(),
                 ));
@@ -71,7 +72,7 @@ class AppRoute {
                       value: settings.arguments as AuthBloc,
                     ),
                     BlocProvider<UserBloc>(
-                      create: ((context) => inj<UserBloc>()..add(GetAllProductsInCartEvent())),
+                      create: ((context) => inj<UserBloc>()),
                     )
                   ],
                   child: HomeScreen(),
@@ -79,8 +80,9 @@ class AppRoute {
 
       case myCardScreen:
         return MaterialPageRoute(
-            builder: (context) => BlocProvider.value(
-                  value: settings.arguments as UserBloc,
+            builder: (context) => BlocProvider<UserBloc>(
+                  create: (context) =>
+                      inj<UserBloc>()..add(GetAllProductsInCartEvent()),
                   child: MyCard(),
                 ));
 
@@ -93,7 +95,10 @@ class AppRoute {
       case productDetailsScreen:
         final product = settings.arguments as ProductDataModel;
         return MaterialPageRoute(
-            builder: (context) => ProductDetailsScreen(product: product));
+            builder: (context) => BlocProvider<UserBloc>(
+                  create: (context) => inj<UserBloc>(),
+                  child: ProductDetailsScreen(product: product),
+                ));
     }
   }
 }

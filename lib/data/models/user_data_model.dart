@@ -24,8 +24,8 @@ class UserDataModel extends UserData {
             password: password,
             phone: phone,
             city: city,
-            cartProducts: cartProducts,
-            favorites: favorites,
+            // cartProducts: cartProducts,
+            // favorites: favorites,
             street: street,
             governorate: governorate,
             imageUrl: imageUrl,
@@ -34,24 +34,24 @@ class UserDataModel extends UserData {
 
   factory UserDataModel.fromJson(Map<String, dynamic> json) {
     if (json != null) {
-      final List<ProductDataModel> favorites = [];
-      if (json['favorites'] != null) {
-        final favoritesJson = json['favorites'];
-        for (var product in favoritesJson) {
-          favorites.add(ProductDataModel.fromJson(product));
-        }
-      }
+      // final List<ProductDataModel> favorites = [];
+      // if (json['favorites'] != null) {
+      //   final favoritesJson = json['favorites'];
+      //   for (var product in favoritesJson) {
+      //     favorites.add(ProductDataModel.fromJson(product));
+      //   }
+      // }
 
-      final List<Map<String, dynamic>> cartProducts = [];
-      if (json['cartProducts'] != null) {
-        final cartProductsJson = json['cartProducts'];
-        for (var product in cartProductsJson) {
-          cartProducts.add({
-            'product': ProductDataModel.fromJson(product['product']),
-            'count': product['count'],
-          });
-        }
-      }
+      // final List<Map<String, dynamic>> cartProducts = [];
+      // if (json['cartProducts'] != null) {
+      //   final cartProductsJson = json['cartProducts'];
+      //   for (var product in cartProductsJson) {
+      //     cartProducts.add({
+      //       'product': ProductDataModel.fromJson(product['product']),
+      //       'count': product['count'],
+      //     });
+      //   }
+      // }
       return UserDataModel(
           id: json['id'],
           name: json['name'],
@@ -59,8 +59,8 @@ class UserDataModel extends UserData {
           password: json['memberSince'],
           memberSince: json['memberSince'],
           //cartProducts: cartProducts,
-          cartProducts:  json['cartProducts'],
-          favorites: favorites,
+          //cartProducts:  json['cartProducts'],
+         // favorites: favorites,
           city: json['city'],
           governorate: json['governorate'],
           street: json['street'],
@@ -78,10 +78,10 @@ class UserDataModel extends UserData {
   }
 
   Map<String, dynamic> toJson() {
-    final favorites = this
-        .favorites
-        .map((product) => (product as ProductDataModel).toJson())
-        .toList();
+    // final favorites = this
+    //     .favorites
+    //     .map((product) => (product as ProductDataModel).toJson())
+    //     .toList();
 
     // final cartProducts = this.cartProducts.map((productMap) {
     //   return (productMap['product'] as ProductDataModel).toJson();
@@ -97,8 +97,8 @@ class UserDataModel extends UserData {
       'street': street,
       'postalCode': postalCode,
       'imageUrl': imageUrl,
-      'favorites': favorites,
-      'cartProducts': cartProducts,
+     // 'favorites': favorites,
+      //'cartProducts': cartProducts,
       'memberSince': memberSince,
     };
 
@@ -119,8 +119,8 @@ class UserData extends Equatable {
   final String street;
   final String postalCode;
   final String imageUrl;
-  final List<ProductDataModel> favorites;
-  final List<dynamic> cartProducts;
+  // final List<ProductDataModel> favorites;
+  // final List<dynamic> cartProducts;
   final String memberSince;
   const UserData({
     required this.id,
@@ -129,8 +129,8 @@ class UserData extends Equatable {
     required this.password,
     required this.phone,
     required this.city,
-    required this.cartProducts,
-    required this.favorites,
+    // required this.cartProducts,
+    // required this.favorites,
     required this.street,
     required this.governorate,
     required this.imageUrl,
@@ -164,8 +164,8 @@ class UserData extends Equatable {
       street: street ?? this.street,
       postalCode: postalCode ?? this.postalCode,
       imageUrl: imageUrl ?? this.imageUrl,
-      favorites: favorites ?? this.favorites,
-      cartProducts: cartProducts ?? this.cartProducts,
+      // favorites: favorites ?? this.favorites,
+      // cartProducts: cartProducts ?? this.cartProducts,
       memberSince: memberSince ?? this.memberSince,
     );
   }
@@ -176,8 +176,8 @@ class UserData extends Equatable {
         password,
         email,
         city,
-        cartProducts,
-        favorites,
+        // cartProducts,
+        // favorites,
         memberSince,
         imageUrl,
         street,

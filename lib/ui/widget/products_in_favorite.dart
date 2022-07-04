@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
+import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 
 class ProductsInFavorite extends StatelessWidget {
+
   ProductsInFavorite({
     Key? key,
+ 
   }) : super(key: key);
 
   @override
