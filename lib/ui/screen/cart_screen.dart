@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
-import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
+import '../../business_logic/blocs/cart/cart_bloc.dart';
 
-import '../../business_logic/blocs/bloc/user_bloc.dart';
-
-class MyCard extends StatelessWidget {
-  const MyCard({Key? key}) : super(key: key);
+class CartScreen extends StatelessWidget {
+  const CartScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,7 @@ class MyCard extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white,
         title: Text(
-          'My Card',
+          'My Cart',
           style: TextStyle(
               fontSize: MySize.customSize.gitSize(context, 16),
               fontWeight: FontWeight.w700,
@@ -37,7 +35,7 @@ class MyCard extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: BlocBuilder<UserBloc, UserState>(
+      body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           if (state is UserCartLoading) {
             return const LoadingWidget();
@@ -58,11 +56,11 @@ class MyCard extends StatelessWidget {
                       Text('${list[index].product.name}'),
                       ElevatedButton(
                           onPressed: () {
-                            context.read<UserBloc>().add(
+                            context.read<CartBloc>().add(
                                 RemoveProductFromCartEvent(
                                     product: list[index].product));
                             context
-                                .read<UserBloc>()
+                                .read<CartBloc>()
                                 .add(GetAllProductsInCartEvent());
                           },
                           child: Text('Delete'))

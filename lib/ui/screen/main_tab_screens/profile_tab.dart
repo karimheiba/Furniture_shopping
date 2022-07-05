@@ -5,7 +5,7 @@ import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
 import 'package:furniture_shopping_app/core/injection_container.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
-import '../../../business_logic/blocs/bloc/user_bloc.dart';
+import '../../../business_logic/blocs/user/user_bloc.dart';
 import '../../../business_logic/blocs/home/home_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {

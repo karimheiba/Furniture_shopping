@@ -13,12 +13,7 @@ abstract class RemoteDataSource {
   /// User Data Source
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserData(String userId);
 
-  Future<void> updateFavorites(
-    String userId,
-    List<ProductDataModel> favorites,
-  );
-
-  ///Cart Sources
+  ///Cart Data Sources
 
   Future<QuerySnapshot<Map<String, dynamic>>> getProductsInCart(String userId);
   Future<void> addProductsToCart(
@@ -27,12 +22,12 @@ abstract class RemoteDataSource {
   );
   Future<void> updateCartProducts(
     String userId,
-    List<Map<String, dynamic>> cartProducts,
+    CartDataModel cartProduct,
   );
 
   Future<void> removeProductFromCart(String userId, String productId);
 
-  ///Favorites Sources
+  ///Favorites Data Sources
   Future<QuerySnapshot<Map<String, dynamic>>> getProductsInFavorites(
       String userId);
   Future<void> addProductsToFavorite(
@@ -51,6 +46,7 @@ class RemoteDataSourceImp extends RemoteDataSource {
 
   final auth = FirebaseAuth.instance;
 
+  /// Auth Data Source
   @override
   Future<UserDataModel> createUser(
       String email, String password, String name) async {
@@ -98,32 +94,6 @@ class RemoteDataSourceImp extends RemoteDataSource {
     return userData;
   }
 
-  @override
-  Future<void> updateCartProducts(
-      String userId, List<Map<String, dynamic>> cartProducts) async {
-    final newCart = cartProducts.map((productMap) {
-      final product = (productMap['product'] as ProductDataModel).toJson();
-      final count = productMap['count'];
-      return {
-        'product': product,
-        'count': count,
-      };
-    }).toList();
-    await FirebaseFirestore.instance.collection('users').doc(userId).update({
-      'cartProducts': newCart,
-    });
-  }
-
-  @override
-  Future<void> updateFavorites(
-      String userId, List<ProductDataModel> favorites) async {
-    final newFavorites =
-        favorites.map((productMap) => productMap.toJson()).toList();
-    await FirebaseFirestore.instance.collection('users').doc(userId).update({
-      'favorites': newFavorites,
-    });
-  }
-
   /// Products Data Source
   @override
   Future<QuerySnapshot<Map<String, dynamic>>> getAllProducts() {
@@ -162,6 +132,19 @@ class RemoteDataSourceImp extends RemoteDataSource {
         .doc(productId)
         .delete();
   }
+
+  @override
+  Future<void> updateCartProducts(
+      String userId, CartDataModel cartProduct) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .collection('cartProducts')
+        .doc(cartProduct.product.id)
+        .update({'count': cartProduct.count});
+  }
+
+  /// Favorite Data Source
 
   @override
   Future<void> addProductsToFavorite(

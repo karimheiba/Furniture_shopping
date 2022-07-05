@@ -7,7 +7,8 @@ import 'package:furniture_shopping_app/data/data_services/remote_data_sources.da
 import 'package:furniture_shopping_app/data/models/cart_model.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 
-import '../../business_logic/blocs/bloc/user_bloc.dart';
+import '../../business_logic/blocs/cart/cart_bloc.dart';
+import '../../business_logic/blocs/user/user_bloc.dart';
 
 class ProductsList extends StatelessWidget {
   final List<ProductDataModel> products;
@@ -20,7 +21,7 @@ class ProductsList extends StatelessWidget {
     double height = size.height;
     double all = height + width;
     return Expanded(
-      child: BlocListener<UserBloc, UserState>(
+      child: BlocListener<CartBloc, CartState>(
         listener: (context, state) {
          if(state is UserCartState){
           if(state.isInCart){
@@ -85,7 +86,7 @@ class ProductsList extends StatelessWidget {
                                     color: Color.fromRGBO(188, 188, 188, 100)
                                         .withOpacity(.8),
                                     onPressed: () async {
-                                      BlocProvider.of<UserBloc>(context)
+                                      BlocProvider.of<CartBloc>(context)
                                           .add(AddProductToCartEvent(
                                         product: products[index],
                                       ));

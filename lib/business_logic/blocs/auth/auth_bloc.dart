@@ -21,6 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         newUser.fold((failure) => emit(AuthError(failure.message)),
             (user) => emit(AuthSuccess()));
       }
+
       /// login user
       if (event is LogInUserAuthEvent) {
         emit(AuthLoading());
@@ -39,8 +40,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             (failure) => emit(ErrorLogOutState(message: failure.message)),
             (unit) => emit(SuccessLogOutState(message: 'See You Again!'))));
       }
-
-      
     });
   }
 }

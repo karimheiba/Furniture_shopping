@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:furniture_shopping_app/business_logic/blocs/bloc/user_bloc.dart';
+import 'package:furniture_shopping_app/business_logic/blocs/favorites/favorites_bloc.dart';
 
 import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
@@ -8,6 +8,8 @@ import 'package:furniture_shopping_app/core/widgets/custom_snack_bar.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 import 'package:furniture_shopping_app/ui/widget/color_pick.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
+
+import '../../business_logic/blocs/cart/cart_bloc.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   ProductDetailsScreen({required this.product});
@@ -100,18 +102,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   //this section for product description
 
   Widget infoSection() {
-    return BlocListener<UserBloc, UserState>(
+    return BlocListener<FavoritesBloc, FavoritesState>(
       listener: (context, state) {
         if (state is UserFavoritesState) {
           if (state.isFavorite) {
             SnackBarMessage.showSuccessMessage(
                 message: 'Added To Favorite', context: context);
-          }
-        }
-        if (state is UserCartState) {
-          if (state.isInCart) {
-            SnackBarMessage.showSuccessMessage(
-                message: 'Added To Cart', context: context);
           }
         }
       },
@@ -121,9 +117,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              //"${ProductModel.product[index].title}",
-              '${widget.product.name}',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+              widget.product.name,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
             ),
             const SizedBox(
               height: 10,
@@ -132,9 +127,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  // "$ ${ProductModel.product[index].price}",
                   '\$ ${widget.product.price}',
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w700,
                       fontFamily: "NunitoSans-Bold",
@@ -163,7 +157,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       width: 10,
                     ),
                     Text(
-                      "",
+                      counter.toString(),
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -253,8 +247,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     minWidth: 60,
                     color: secondaryButtonBG,
                     padding: EdgeInsets.all(0),
-                    onPressed: () => BlocProvider.of<UserBloc>(context).add(
-                        AddProductToFavoriteEvent(
+                    onPressed: () => BlocProvider.of<FavoritesBloc>(context)
+                        .add(AddProductToFavoriteEvent(
                             favoriteProduct: widget.product)),
                     child: Icon(Icons.bookmark_border),
                   ),
@@ -267,7 +261,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         buttonHight: MySize.customSize.gitSize(context, 60),
                         buttonWidth: 250,
                         text: "Add to cart",
-                        onPressed: () => context.read<UserBloc>().add(
+                        onPressed: () => context.read<CartBloc>().add(
                             AddProductToCartEvent(product: widget.product))),
                   )
                 ],

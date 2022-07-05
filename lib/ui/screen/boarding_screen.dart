@@ -3,14 +3,13 @@ import 'package:furniture_shopping_app/core/constans/colors.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
 import 'package:furniture_shopping_app/core/constans/strings.dart';
 
-class Boarding extends StatelessWidget {
-  Boarding({
+class BoardingScreen extends StatelessWidget {
+  BoardingScreen({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
         body: Column(
       children: [

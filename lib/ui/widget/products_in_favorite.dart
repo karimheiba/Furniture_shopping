@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:furniture_shopping_app/business_logic/blocs/favorites/favorites_bloc.dart';
+import 'package:furniture_shopping_app/business_logic/blocs/user/user_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
 
-class ProductsInFavorite extends StatelessWidget {
+import '../../business_logic/blocs/cart/cart_bloc.dart';
 
-  ProductsInFavorite({
-    Key? key,
- 
-  }) : super(key: key);
+class ProductsInFavorite extends StatelessWidget {
+  const ProductsInFavorite({Key? key, required this.product}) : super(key: key);
+  final ProductDataModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +33,9 @@ class ProductsInFavorite extends StatelessWidget {
               ),
               child: FadeInImage.assetNetwork(
                 placeholder: "assets/images/giphy.gif",
-                image:
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUd3U9lYcBg9LkWv-GKdL42RaLne_-5QFD-g&usqp=CAU',
+                // image:
+                //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUd3U9lYcBg9LkWv-GKdL42RaLne_-5QFD-g&usqp=CAU',
+                image: product.images.first,
                 fit: BoxFit.fill,
               ),
             ),
@@ -42,7 +45,8 @@ class ProductsInFavorite extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  'Coffee Chair',
+                  // 'Coffee Chair',
+                  product.name,
                   style: TextStyle(
                       fontSize: all / 79.1,
                       fontWeight: FontWeight.w500,
@@ -52,7 +56,8 @@ class ProductsInFavorite extends StatelessWidget {
                   height: all / 237.4,
                 ),
                 Text(
-                  '\$ 20.00',
+                  //  '\$ 20.00',
+                  '\$ ${product.price}',
                   style: TextStyle(
                       fontSize: all / 79.1,
                       fontWeight: FontWeight.w700,
@@ -65,11 +70,20 @@ class ProductsInFavorite extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    BlocProvider.of<FavoritesBloc>(context).add(
+                        RemoveProductFromFavoriteEvent(
+                            favoriteProduct: product));
+                            BlocProvider.of<FavoritesBloc>(context).add(
+                        GetAllProductsInFavoriteEvent());
+                  },
                   child: Icon(size: all / 49.45, Icons.cancel_outlined),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    BlocProvider.of<CartBloc>(context)
+                        .add(AddProductToCartEvent(product: product));
+                  },
                   child: Icon(size: all / 49.45, Icons.shopping_bag_outlined),
                 ),
               ],
