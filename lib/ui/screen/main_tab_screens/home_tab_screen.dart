@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:furniture_shopping_app/business_logic/blocs/cart/cart_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/colors.dart';
+import 'package:furniture_shopping_app/core/constans/strings.dart';
 import 'package:furniture_shopping_app/core/injection_container.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
 import 'package:furniture_shopping_app/data/models/products_data_model.dart';
@@ -24,8 +26,7 @@ class HomeScreenTab extends StatelessWidget {
     double height = size.height;
     double all = height + width;
     return BlocProvider(
-      create: (_) => inj<ProductsBloc>()
-        ..add(GetAllProductsEvent()),
+      create: (_) => inj<ProductsBloc>()..add(GetAllProductsEvent()),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -92,7 +93,8 @@ class HomeScreenTab extends StatelessWidget {
           }),
           actions: [
             IconButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(context, myCartScreen,
+                    arguments: BlocProvider.of<CartBloc>(context)),
                 icon: Icon(
                   Icons.shopping_cart_outlined,
                   color: textSecondary,
