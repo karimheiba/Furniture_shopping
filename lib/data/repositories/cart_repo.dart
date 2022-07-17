@@ -78,7 +78,6 @@ class CartRepoImpl extends CartRepo {
       final userId = localDataSource.getCachedUserId();
       final CartDataModel cartProduct =
           CartDataModel(count: count, product: product);
-
       await RemoteDataSourceImp.instance
           .updateCartProducts(userId, cartProduct);
       return Right(cartProduct);

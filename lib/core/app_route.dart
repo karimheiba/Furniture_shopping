@@ -94,9 +94,14 @@ class AppRoute {
 
       case myCartScreen:
         return MaterialPageRoute(
-            builder: (context) => BlocProvider<CartBloc>(
-                  create: (context) =>
-                      inj<CartBloc>()..add(GetAllProductsInCartEvent()),
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider<CartBloc>(
+                      create: (context) =>
+                          inj<CartBloc>()..add(GetAllProductsInCartEvent()),
+                    ),
+                   
+                  ],
                   child: CartScreen(),
                 ));
 

@@ -24,7 +24,7 @@ Future<void> init() async {
       () => UserBloc(authRepo: inj(), localDataSource: inj(), userRepo: inj()));
   inj.registerFactory(() => CartBloc(cartRepo: inj()));
   inj.registerFactory(() => FavoritesBloc(favoritesRepo: inj()));
-
+ 
   // Repositories
   inj.registerLazySingleton<AuthRepoImpl>(
       () => AuthRepoImpl(localDataSource: inj()));

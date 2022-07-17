@@ -36,10 +36,8 @@ class Error extends CartState {
 }
 
 class UpdatedCountProduct extends CartState {
-  final CartDataModel cartDataModel;
-  const UpdatedCountProduct({required this.cartDataModel});
+  final int count;
+  const UpdatedCountProduct({required this.count});
   @override
-  List<Object> get props => [cartDataModel];
+  List<Object> get props => [count];
 }
-
-
