@@ -36,20 +36,35 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         emit(UserCartLoading());
         final cart = await cartRepo.getAllProductsInCart();
         cart.fold((failure) => emit(Error(message: failure.message)),
-            (products) => emit(UserCartLoaded(cartProducts: products)));
+            (products) {
+          emit(UserCartLoaded(cartProducts: products));
+        });
       }
 
-      /// Update Cart Count Event
-      if (event is UpdateCountProduct) {
-        final cart = await cartRepo.updateProductCountInCart(
-            event.product.count, event.product.product);
-
-        cart.fold((l) => emit(Error(message: l.message)),
-            (r) => emit(UpdatedCountProduct(cartDataModel: r)));
+      if (event is IncrementCounter) {
+        final countProduct =
+            await cartRepo.updateProductCountInCart(event.count, event.product);
+        countProduct.fold((l) => print('error'), (r) {
+          print(r.count.toString());
+        });
+        final cart = await cartRepo.getAllProductsInCart();
+        cart.fold((failure) => emit(Error(message: failure.message)),
+            (products) {
+          emit(UserCartLoaded(cartProducts: products));
+        });
       }
-
-    
-      
+      if (event is DecrementCounter) {
+        final countProduct =
+            await cartRepo.updateProductCountInCart(event.count, event.product);
+        countProduct.fold((l) => print('error'), (r) {
+          print(r.count.toString());
+        });
+        final cart = await cartRepo.getAllProductsInCart();
+        cart.fold((failure) => emit(Error(message: failure.message)),
+            (products) {
+          emit(UserCartLoaded(cartProducts: products));
+        });
+      }
     });
   }
 }

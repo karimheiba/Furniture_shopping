@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:furniture_shopping_app/core/constans/size.dart';
 import 'package:furniture_shopping_app/core/widgets/loading_widget.dart';
+import 'package:furniture_shopping_app/ui/widget/cart_item_card.dart';
 import 'package:furniture_shopping_app/ui/widget/sign_button.dart';
 import '../../business_logic/blocs/cart/cart_bloc.dart';
 
@@ -12,7 +13,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: widgetFloatingActionbutton(context),
+      //floatingActionButton: widgetFloatingActionbutton(context),
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -47,26 +48,36 @@ class CartScreen extends StatelessWidget {
           }
           if (state is UserCartLoaded) {
             final list = state.cartProducts;
-            return ListView.builder(
-                itemCount: list.length,
-                itemBuilder: (context, index) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text('${list[index].product.name}'),
-                      ElevatedButton(
-                          onPressed: () {
-                            context.read<CartBloc>().add(
-                                RemoveProductFromCartEvent(
-                                    product: list[index].product));
-                            context
-                                .read<CartBloc>()
-                                .add(GetAllProductsInCartEvent());
-                          },
-                          child: Text('Delete'))
-                    ],
-                  );
-                });
+            return Column(
+              children: [
+                Column(
+                  children: [
+                    SizedBox(
+                      height: MySize.customSize.gitSize(context, 450),
+                      child: ListView.builder(
+                          itemCount: list.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: CartItemCard(
+                                product: list[index].product,
+                                quantity: list[index].count,
+                              ),
+                            );
+                          }),
+                    ),
+                    Divider(
+                      color: Colors.black,
+                      thickness: 4,
+                    )
+                  ],
+                ),
+                Expanded(
+                    child: Column(
+                  children: [Text('Total = 10')],
+                ))
+              ],
+            );
           }
           return Container(
             color: Colors.red,

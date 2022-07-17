@@ -25,11 +25,18 @@ class RemoveProductFromCartEvent extends CartEvent {
   List<Object> get props => [product];
 }
 
-class UpdateCountProduct extends CartEvent {
-  final CartDataModel product;
+class IncrementCounter extends CartEvent {
+  final ProductDataModel product;
+  final int count;
 
-  const UpdateCountProduct({required this.product});
+  const IncrementCounter({required this.product,required this.count});
   @override
-  List<Object> get props => [product];
+  List<Object> get props => [product,count];
 }
 
+class DecrementCounter extends CartEvent {final ProductDataModel product;
+  final int count;
+
+  const DecrementCounter({required this.product,required this.count});
+  @override
+  List<Object> get props => [product,count];}
